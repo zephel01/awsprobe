@@ -873,5 +873,92 @@ class TestQ37VpcScopeAndIpv6(unittest.TestCase):
         self.assertNotIn("§5-2", answer.summary)
 
 
+class ExistenceSignalTest(unittest.TestCase):
+    """「中身は読まないが、有る／動いている は出す」系の判定。
+
+    値そのものを取らなくても、存在・件数・最終実行が分かれば人が次に何を見れば
+    よいか決められる。その情報が判定に効いていることを、有る／無いの両方向で見る。
+    """
+
+    # -- Q18: DLM ポリシー -------------------------------------------------
+    def test_q18_answered_when_dlm_policy_exists(self) -> None:
+        """DLM ポリシーがあれば、取得元と保持ルールまで確定して answered になる。"""
+        answer = answers_by_id(q.resolve_all(load_fixture()))["Q18"]
+        self.assertEqual(q.ANSWERED, answer.status)
+        joined = "\n".join(answer.details)
+        self.assertIn("cron(0 18 * * ? *)", joined)   # スケジュール
+        self.assertIn("7 世代", joined)                # 保持世代
+        self.assertIsNone(answer.manual_steps)
+
+    def test_q18_partial_when_no_dlm_policy(self) -> None:
+        """DLM が無ければ partial に戻り、どこを見ればよいかを manual_steps に残す。"""
+        inventory = load_fixture()
+        inventory["compute"]["dlm_lifecycle_policies"] = []
+        answer = answers_by_id(q.resolve_all(inventory))["Q18"]
+        self.assertEqual(q.PARTIAL, answer.status)
+        self.assertIn("EventBridge", answer.manual_steps or "")
+
+    # -- Q24: Lambda の最終実行 -------------------------------------------
+    def test_q24_reports_last_invocation(self) -> None:
+        """最終実行の経過日数が表に出て、長期未実行が名指しされること。"""
+        answer = answers_by_id(q.resolve_all(load_fixture()))["Q24"]
+        joined = "\n".join(answer.details)
+        self.assertIn("最終実行", joined)
+        self.assertIn("日以上動いていない関数", joined)
+        self.assertIn("DLTLambdaTaskRunner", joined)
+        # ログ本文を読んでいないことを本文で明言している
+        self.assertIn("ログ本文は読んでいない", joined)
+
+    def test_q24_answered_when_every_function_has_logs(self) -> None:
+        """トリガ未検出でも、ロググループがあれば動作の有無は確定する。"""
+        inventory = load_fixture()
+        for fn in inventory["serverless"]["lambda_functions"]:
+            if fn.get("_LastLogEvent") is None:
+                fn["_LastLogEvent"] = {
+                    "logGroupName": f"/aws/lambda/{fn['FunctionName']}",
+                    "logStreamName": "2026/09/16/[$LATEST]deadbeef",
+                    "lastEventTimestamp": 1789500000000,
+                    "lastEventTime": "2026-09-15T12:40:00+00:00",
+                }
+        answer = answers_by_id(q.resolve_all(inventory))["Q24"]
+        self.assertEqual(q.ANSWERED, answer.status)
+        self.assertIsNone(answer.manual_steps)
+
+    def test_q24_flags_function_without_log_group(self) -> None:
+        """ロググループが無い関数は名指しされ、partial のまま残ること。"""
+        answer = answers_by_id(q.resolve_all(load_fixture()))["Q24"]
+        self.assertEqual(q.PARTIAL, answer.status)
+        self.assertIn("ロググループが存在しない関数", "\n".join(answer.details))
+
+    # -- Q26: Step Functions の最終実行 ------------------------------------
+    def test_q26_uses_last_execution(self) -> None:
+        """最終実行日を本文に出し、manual_steps から実行履歴の確認が消えること。"""
+        answer = answers_by_id(q.resolve_all(load_fixture()))["Q26"]
+        self.assertIn("最終実行", "\n".join(answer.details))
+        self.assertNotIn("ListExecutions", answer.manual_steps or "")
+        self.assertIn("負荷試験計画", answer.manual_steps or "")
+
+    def test_q26_flags_never_executed(self) -> None:
+        """実行履歴が無いステートマシンは「実行履歴なし」と書かれること。"""
+        inventory = load_fixture()
+        for machine in inventory["serverless"]["stepfunctions_state_machines"]:
+            machine["_LastExecution"] = None
+        answer = answers_by_id(q.resolve_all(inventory))["Q26"]
+        self.assertIn("実行履歴が 1 件も無い", "\n".join(answer.details))
+
+    # -- 退行防止 -----------------------------------------------------------
+    def test_new_fields_are_optional(self) -> None:
+        """新フィールドが無い古い inventory でも例外を出さないこと。"""
+        inventory = load_fixture()
+        for fn in inventory["serverless"]["lambda_functions"]:
+            fn.pop("_LastLogEvent", None)
+        for machine in inventory["serverless"]["stepfunctions_state_machines"]:
+            machine.pop("_LastExecution", None)
+        inventory["compute"].pop("dlm_lifecycle_policies", None)
+        answers = answers_by_id(q.resolve_all(inventory))
+        for qid in ("Q18", "Q24", "Q26"):
+            self.assertIn(answers[qid].status, q.STATUSES)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

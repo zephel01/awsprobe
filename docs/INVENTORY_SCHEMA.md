@@ -57,6 +57,10 @@
     "ssm_managed_instances": [],     // ssm:DescribeInstanceInformation（SSM 到達性の判定に使う）
     "ssm_inventory": [],             // ssm:ListInventoryEntries が引ければ AWS:Application 等（任意）
     "ssm_patch_states": [],          // ssm:DescribeInstancePatchStates（任意）
+    "dlm_lifecycle_policies": [],    // dlm:GetLifecyclePolicies + GetLifecyclePolicy
+                                     //   AMI/スナップショットの定期取得が「仕組みとして」
+                                     //   有るかの確認。PolicyDetails.Schedules に
+                                     //   CreateRule(スケジュール)と RetainRule(保持世代)
     "ebs_encryption_by_default": {}, // ec2:GetEbsEncryptionByDefault → {"EbsEncryptionByDefault": bool}
     "ebs_default_kms_key_id": {},    // ec2:GetEbsDefaultKmsKeyId → {"KmsKeyId": "..."}
     "instance_credit_specifications": [], // ec2:DescribeInstanceCreditSpecifications
@@ -119,9 +123,17 @@
   "serverless": {
     "lambda_functions": [],          // lambda:ListFunctions に "EventSourceMappings",
                                      //   "Policy"(resource policy|null), "UrlConfig" を追加
+                                     //   "_LastLogEvent": {logGroupName, logStreamName,
+                                     //     lastEventTimestamp(ms), lastEventTime(ISO)} | null
+                                     //     logs:DescribeLogStreams の結果。**本文は読まない**。
+                                     //     null はロググループ不在（＝未実行）か権限不足
     "eventbridge_rules": [],         // events:ListRules に "Targets" を追加（全 EventBus を走査）
     "eventbridge_buses": [],
     "stepfunctions_state_machines": [],
+                                     // states:DescribeStateMachine（definition は長さと
+                                     //   先頭500文字のみ）。"_LastExecution":
+                                     //   {name, status, startDate, stopDate} | null
+                                     //   states:ListExecutions の直近1件。**入出力は取らない**
     "dynamodb_tables": [],           // dynamodb:DescribeTable（項目の中身は取得しない）
     "sqs_queues": [],                // sqs:ListQueues + GetQueueAttributes（URL と属性のみ）
     "sns_topics": [],                // sns:ListTopics + GetTopicAttributes + ListSubscriptionsByTopic

@@ -68,6 +68,10 @@ DENIED_CODES = frozenset(
 #: 判定基準日（EOL 判定に使う）
 _TODAY = _dt.date.today()
 
+#: Lambda / ステートマシンを「動いていない」とみなす未実行日数
+_LAMBDA_IDLE_DAYS = 90
+_SFN_IDLE_DAYS = 90
+
 
 # ---------------------------------------------------------------------------
 # Answer
@@ -2958,8 +2962,9 @@ def q18_ami_lifecycle(inv: dict) -> Answer:
         if not account_id or is_self_account(img.get("OwnerId"), account_id)
     ]
     snapshots = _dicts(inv, "compute", "snapshots")
+    dlm_policies = _dicts(inv, "compute", "dlm_lifecycle_policies")
 
-    evidence = ["compute.images", "compute.snapshots"]
+    evidence = ["compute.images", "compute.snapshots", "compute.dlm_lifecycle_policies"]
     details: list[str] = []
 
     if not owned:
@@ -2971,12 +2976,19 @@ def q18_ami_lifecycle(inv: dict) -> Answer:
             "**自アカウント所有の AMI は1本も存在しない。** "
             "AMI による世代バックアップは行われていないと考えられる"
             f"（参照中の AMI {len(images)} 本はすべて他者所有）。",
-            [f"- 収集した AMI {len(images)} 本のうち、自アカウント（{account_id or '不明'}）所有は0本。"],
+            [
+                f"- 収集した AMI {len(images)} 本のうち、自アカウント（{account_id or '不明'}）所有は0本。",
+                f"- Data Lifecycle Manager のポリシー: {len(dlm_policies)} 件"
+                + ("（**取得の仕組み自体が無い**）" if not dlm_policies else "（下記参照）"),
+            ]
+            + _dlm_lines(dlm_policies),
             evidence,
             manual_steps=(
                 "AMI ではなく EBS スナップショット／AWS Backup で世代管理している可能性があるため、"
                 "`storage.backup_plans` と運用手順書を確認すること。"
-            ),
+            )
+            if not dlm_policies
+            else None,
         )
 
     rows: list[list[Any]] = []
@@ -3026,37 +3038,89 @@ def q18_ami_lifecycle(inv: dict) -> Answer:
         )
     details.append(f"- 自アカウント所有の EBS スナップショット: {len(snapshots)} 本")
 
-    dlm_hint = [
-        img.get("Name")
-        for img in owned
-        if "lifecycle" in str(img.get("Description") or "").lower()
-        or "DLM" in str(img.get("Description") or "")
-    ]
-    if dlm_hint:
-        details.append(
-            f"- **Data Lifecycle Manager 由来と思われる AMI がある**: {', '.join(str(n) for n in dlm_hint[:5])}"
-        )
+    details.append("")
+    details.extend(_dlm_lines(dlm_policies))
 
-    summary = (
-        f"自アカウント所有 AMI {len(owned)} 本の作成日分布と命名までは確認できた"
-        f"（作成間隔: {interval_note}）。"
-        "**定期取得のジョブ本体（DLM ポリシー / cron / 外部ツール）は awsprobe では収集していないため、"
-        "取得元と保持ルールの確定にはヒアリングが必要。**"
-    )
+    if dlm_policies:
+        summary = (
+            f"自アカウント所有 AMI {len(owned)} 本の作成日分布と命名に加え、"
+            f"**Data Lifecycle Manager のポリシー {len(dlm_policies)} 件で取得元と保持ルールまで確定した**"
+            f"（作成間隔: {interval_note}）。"
+        )
+        manual = None
+    else:
+        summary = (
+            f"自アカウント所有 AMI {len(owned)} 本の作成日分布と命名までは確認できた"
+            f"（作成間隔: {interval_note}）。"
+            "**Data Lifecycle Manager のポリシーは 1 件も無いので、定期取得しているなら "
+            "EventBridge / cron / 外部ツールのいずれかであり、そこは inventory からは辿れない。**"
+        )
+        manual = (
+            "DLM を使っていないのに AMI が定期的に増えているなら、EventBridge / cron / "
+            "外部ツールのどれが作っているかを確認すること。実施主体と保持世代数・"
+            "復旧手順の文書の所在も併せて確認する。"
+        )
     return Answer(
         "",
         "",
         "",
-        PARTIAL,
+        ANSWERED if dlm_policies else PARTIAL,
         summary,
         details,
         evidence,
-        manual_steps=(
-            "`dlm:GetLifecyclePolicies`（Data Lifecycle Manager）と EventBridge / cron の"
-            "AMI 作成ジョブの有無を確認すること。実施主体（発注元／開発ベンダー／監視ベンダー）と"
-            "保持世代数・復旧手順の文書の所在を併せて確認する。"
-        ),
+        manual_steps=manual,
     )
+
+
+def _dlm_lines(policies: list[dict]) -> list[str]:
+    """DLM ポリシーを「取得元・対象・スケジュール・保持世代」の表にする。"""
+    if not policies:
+        return ["- Data Lifecycle Manager のポリシーは存在しない。"]
+    rows: list[list[Any]] = []
+    for policy in policies:
+        details_body = policy.get("PolicyDetails")
+        details_body = details_body if isinstance(details_body, dict) else {}
+        schedules = [s for s in (details_body.get("Schedules") or []) if isinstance(s, dict)]
+        if not schedules:
+            schedules = [{}]
+        for schedule in schedules:
+            create = schedule.get("CreateRule") if isinstance(schedule.get("CreateRule"), dict) else {}
+            retain = schedule.get("RetainRule") if isinstance(schedule.get("RetainRule"), dict) else {}
+            cron = create.get("CronExpression")
+            interval = create.get("Interval")
+            when = (
+                str(cron)
+                if cron
+                else (f"{interval}{create.get('IntervalUnit') or ''}ごと" if interval else "—")
+            )
+            keep = retain.get("Count")
+            keep_text = (
+                f"{keep} 世代"
+                if keep
+                else (f"{retain.get('Interval')}{retain.get('IntervalUnit') or ''}保持" if retain.get("Interval") else "—")
+            )
+            rows.append(
+                [
+                    policy.get("PolicyId"),
+                    policy.get("State") or "—",
+                    details_body.get("ResourceTypes") and ", ".join(
+                        str(r) for r in details_body.get("ResourceTypes") or []
+                    ) or (details_body.get("PolicyType") or "—"),
+                    schedule.get("Name") or "—",
+                    when,
+                    keep_text,
+                ]
+            )
+    out = [f"**Data Lifecycle Manager のポリシー（{len(policies)}件）**"]
+    out.extend(
+        table(["ポリシーID", "状態", "対象", "スケジュール名", "取得間隔", "保持"], rows)
+    )
+    out.append("")
+    out.append(
+        "- DLM のポリシーがあれば、AMI / スナップショットの定期取得は"
+        "**仕組みとして存在する**と言い切れる（手動運用との区別がつく）。"
+    )
+    return out
 
 
 @question(
@@ -3757,8 +3821,11 @@ def q24_lambda_functions(inv: dict) -> Answer:
     rows: list[list[Any]] = []
     eol_functions: list[str] = []
     public_urls: list[str] = []
+    idle: list[str] = []
+    silent: list[str] = []
     for i, fn in enumerate(functions):
         evidence.append(f"serverless.lambda_functions[{i}].Runtime")
+        evidence.append(f"serverless.lambda_functions[{i}]._LastLogEvent")
         arn = str(fn.get("FunctionArn") or "")
         name = str(fn.get("FunctionName") or "")
         expired, eol_date = runtime_eol(fn.get("Runtime"))
@@ -3788,12 +3855,24 @@ def q24_lambda_functions(inv: dict) -> Answer:
                 public_urls.append(name)
 
         env = fn.get("Environment") if isinstance(fn.get("Environment"), dict) else {}
+        last_log = fn.get("_LastLogEvent") if isinstance(fn.get("_LastLogEvent"), dict) else None
+        last_run_days = days_since((last_log or {}).get("lastEventTime"))
+        if last_log is None:
+            last_run = "ログ無し"
+            silent.append(name)
+        elif last_run_days is None:
+            last_run = "—"
+        else:
+            last_run = f"{last_run_days}日前"
+            if last_run_days > _LAMBDA_IDLE_DAYS:
+                idle.append(f"{name}（{last_run_days}日前）")
         rows.append(
             [
                 name,
                 f"**{fn.get('Runtime')}（EOL {eol_date}）**" if expired else fn.get("Runtime"),
                 fn.get("Handler"),
                 fn.get("LastModified"),
+                last_run,
                 f"{fn.get('MemorySize')}MB / {fn.get('Timeout')}s",
                 ", ".join(triggers) or "**トリガ未検出**",
                 ", ".join(str(k) for k in (env.get("_keys") or [])[:6]) or "—",
@@ -3803,7 +3882,7 @@ def q24_lambda_functions(inv: dict) -> Answer:
     details = [f"**Lambda 関数一覧（{len(functions)}本）**"]
     details.extend(
         table(
-            ["関数名", "ランタイム", "ハンドラ", "最終更新", "メモリ/タイムアウト", "トリガ", "環境変数キー（先頭6件）"],
+            ["関数名", "ランタイム", "ハンドラ", "最終更新", "最終実行", "メモリ/タイムアウト", "トリガ", "環境変数キー（先頭6件）"],
             rows,
         )
     )
@@ -3820,12 +3899,27 @@ def q24_lambda_functions(inv: dict) -> Answer:
         details.append(
             f"- **認証なしの関数URL（AuthType=NONE）が開いている関数: {', '.join(public_urls)}**。"
         )
-    untriggered = [str(r[0]) for r in rows if "トリガ未検出" in str(r[5])]
+    untriggered = [str(r[0]) for r in rows if "トリガ未検出" in str(r[6])]
     if untriggered:
         details.append(
             f"- トリガが検出できなかった関数: {', '.join(untriggered)}"
             "（手動実行・他アカウントからの呼び出し・未使用のいずれか）。"
+            "**最終実行の列と併せて読むこと。**"
         )
+    if silent:
+        details.append(
+            f"- **ロググループが存在しない関数: {', '.join(silent)}**。"
+            "一度も実行されていないか、ログを消したか、`logs:DescribeLogStreams` の"
+            "権限が無いかのいずれか（権限不足なら errors に記録が残る）。"
+        )
+    if idle:
+        details.append(
+            f"- **{_LAMBDA_IDLE_DAYS}日以上動いていない関数: {', '.join(idle)}**。削除候補。"
+        )
+    details.append(
+        "- 最終実行は `/aws/lambda/<関数名>` の最新ログストリームの書き込み時刻から取った"
+        "（**ログ本文は読んでいない**。ストリームのメタデータのみ）。"
+    )
 
     summary = (
         f"Lambda {len(functions)} 本の名前・ランタイム・ハンドラ・トリガをすべて特定した。"
@@ -3835,20 +3929,30 @@ def q24_lambda_functions(inv: dict) -> Answer:
             else "EOL ランタイムは無い。"
         )
         + " 用途（何のための関数か）は命名と環境変数キーからの推定にとどまる。"
+        + (
+            f" **最終実行まで確定済み（{len(idle)}本が{_LAMBDA_IDLE_DAYS}日以上未実行）。**"
+            if idle
+            else " 最終実行まで確定済み。"
+        )
     )
+    # トリガが検出できなくても、最終実行が取れていれば「動いているか」は確定する。
+    # 全ての関数で最終実行の判定材料が揃っていれば answered に上げる。
+    unresolved = [n for n in untriggered if n in silent]
     return Answer(
         "",
         "",
         "",
-        ANSWERED if not untriggered else PARTIAL,
+        ANSWERED if not unresolved else PARTIAL,
         summary,
         details,
         evidence,
         manual_steps=(
-            "トリガ未検出の関数について、CloudWatch Logs のログストリームの最終書き込み日時を確認し、"
-            "実際に動いているかを判定すること。動いていなければ削除候補。"
+            "トリガもロググループも見つからない関数（"
+            + "、".join(unresolved)
+            + "）について、`logs:DescribeLogStreams` の権限があるかを errors で確認し、"
+            "権限があってログが無いなら未使用として削除候補に回すこと。"
         )
-        if untriggered
+        if unresolved
         else None,
     )
 
@@ -4049,19 +4153,37 @@ def q26_dlt(inv: dict) -> Answer:
     rows: list[list[Any]] = []
     ages: list[int] = []
 
+    last_runs: list[str] = []
+    never_run: list[str] = []
     for machine in machines:
         if not _is_dlt(machine.get("name")):
             continue
         age = days_since(machine.get("creationDate"))
         if age is not None:
             ages.append(age)
+        execution = (
+            machine.get("_LastExecution")
+            if isinstance(machine.get("_LastExecution"), dict)
+            else None
+        )
+        run_age = days_since((execution or {}).get("startDate"))
+        if execution is None:
+            note = "**実行履歴なし**"
+            never_run.append(str(machine.get("name")))
+        else:
+            note = (
+                f"最終実行 {run_age} 日前（{execution.get('status')}）"
+                if run_age is not None
+                else f"最終実行 {execution.get('startDate')}（{execution.get('status')}）"
+            )
+            last_runs.append(note)
         rows.append(
             [
                 "Step Functions",
                 machine.get("name"),
                 machine.get("creationDate"),
                 f"{age} 日前" if age is not None else "—",
-                machine.get("status") or "—",
+                note,
             ]
         )
     for tbl in tables:
@@ -4133,15 +4255,26 @@ def q26_dlt(inv: dict) -> Answer:
         "- **DynamoDB の `ItemCount` は AWS が約6時間ごとに更新する概算値**であり、"
         "0 でもデータが無いとは限らない点に注意。"
     )
-    details.append(
-        "- **実際の最終実行日時は Step Functions の実行履歴（`states:ListExecutions`）でしか分からず、"
-        "awsprobe では収集していない。**"
-    )
+    if never_run:
+        details.append(
+            f"- **実行履歴が 1 件も無いステートマシン: {', '.join(never_run)}**。"
+            "作られたまま一度も動いていない（または履歴の保持期間を過ぎている）。"
+        )
+    if last_runs:
+        details.append("- 最終実行は `states:ListExecutions` の直近 1 件から取った"
+                       "（**実行の入出力は取得していない**）。")
 
     summary = (
-        f"DLT 一式 {len(rows)} 件を特定し、作成／最終更新の経過日数まで確認できた"
-        + (f"（最新でも {min(ages)} 日前）" if ages else "")
-        + "。**実行履歴と今後の負荷試験計画の有無は inventory からは判定できない。**"
+        f"DLT 一式 {len(rows)} 件を特定し、作成／最終更新の経過日数と"
+        "**Step Functions の最終実行日まで**確認できた"
+        + (f"（最新の更新でも {min(ages)} 日前）" if ages else "")
+        + "。"
+        + (
+            "**実行履歴は 1 件も無い。**"
+            if never_run and not last_runs
+            else ""
+        )
+        + "残るのは今後の負荷試験計画の有無だけで、これは人に聞くしかない。"
     )
     return Answer(
         "",
@@ -4152,10 +4285,9 @@ def q26_dlt(inv: dict) -> Answer:
         details,
         evidence,
         manual_steps=(
-            "(1) Step Functions の実行履歴（`states:ListExecutions`）で最終実行日を確認、"
-            "(2) 発注元社内・開発ベンダーに今後1年の負荷試験計画の有無を確認、"
-            "の2点で削除可否が確定する。計画が無ければ DLT 一式（Step Functions / DynamoDB×2 / Cognito / "
-            "関連 IAM ロール）はまとめて削除できる。"
+            "最終実行日はこのレポートで確定済み。残るは発注元社内・開発ベンダーへの"
+            "「今後1年の負荷試験計画の有無」の確認だけで、計画が無ければ DLT 一式"
+            "（Step Functions / DynamoDB×2 / Cognito / 関連 IAM ロール）はまとめて削除できる。"
         ),
     )
 
