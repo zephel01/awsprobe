@@ -198,6 +198,8 @@ class CollectorMotoTest(unittest.TestCase):
             # セキュリティ実施状況（posture.py）の判定に使う追加項目
             "ebs_encryption_by_default", "ebs_default_kms_key_id",
             "instance_credit_specifications", "instance_connect_endpoints",
+            # AMI/スナップショットの定期取得が仕組みとして有るかの確認（Q18）
+            "dlm_lifecycle_policies",
         }
         self.assertEqual(expected, set(self.compute))
 

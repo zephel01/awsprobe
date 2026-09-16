@@ -3193,6 +3193,41 @@
         "InstanceId": "i-0stg03",
         "CpuCredits": "standard"
       }
+    ],
+    "dlm_lifecycle_policies": [
+      {
+        "PolicyId": "policy-0a1b2c3d4e5f67890",
+        "Description": "本番EC2の日次AMI取得",
+        "State": "ENABLED",
+        "PolicyType": "IMAGE_MANAGEMENT",
+        "Tags": {
+          "Environment": "prod"
+        },
+        "PolicyDetails": {
+          "PolicyType": "IMAGE_MANAGEMENT",
+          "ResourceTypes": [
+            "INSTANCE"
+          ],
+          "TargetTags": [
+            {
+              "Key": "Backup",
+              "Value": "daily"
+            }
+          ],
+          "Schedules": [
+            {
+              "Name": "daily-ami",
+              "CreateRule": {
+                "CronExpression": "cron(0 18 * * ? *)"
+              },
+              "RetainRule": {
+                "Count": 7
+              },
+              "CopyTags": true
+            }
+          ]
+        }
+      }
     ]
   },
   "database": {
@@ -5293,7 +5328,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-rds-auto-stop",
+          "logStreamName": "2026/09/15/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789498800000,
+          "lastEventTime": "2026-09-15T19:00:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-rds-auto-start",
@@ -5314,7 +5355,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-rds-auto-start",
+          "logStreamName": "2026/09/15/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789509600000,
+          "lastEventTime": "2026-09-15T22:00:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-chat-export",
@@ -5335,7 +5382,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-chat-export",
+          "logStreamName": "2026/09/14/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789408800000,
+          "lastEventTime": "2026-09-14T18:00:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-ses-bounce-handler",
@@ -5356,7 +5409,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-ses-bounce-handler",
+          "logStreamName": "2026/09/10/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789007460000,
+          "lastEventTime": "2026-09-10T02:31:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-s3-thumbnail",
@@ -5389,7 +5448,13 @@
           ]
         },
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-s3-thumbnail",
+          "logStreamName": "2026/09/16/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789521120000,
+          "lastEventTime": "2026-09-16T01:12:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-config-notify",
@@ -5417,7 +5482,13 @@
         ],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-config-notify",
+          "logStreamName": "2026/09/12/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789213500000,
+          "lastEventTime": "2026-09-12T11:45:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-healthcheck",
@@ -5438,7 +5509,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-healthcheck",
+          "logStreamName": "2026/09/16/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789527600000,
+          "lastEventTime": "2026-09-16T03:00:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-log-archive",
@@ -5459,7 +5536,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/ex-log-archive",
+          "logStreamName": "2026/09/16/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1789517100000,
+          "lastEventTime": "2026-09-16T00:05:00+00:00"
+        }
       },
       {
         "FunctionName": "DLTLambdaTaskRunner",
@@ -5480,7 +5563,13 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": {
+          "logGroupName": "/aws/lambda/DLTLambdaTaskRunner",
+          "logStreamName": "2022/08/19/[$LATEST]0a1b2c3d4e5f",
+          "lastEventTimestamp": 1660890000000,
+          "lastEventTime": "2022-08-19T06:20:00+00:00"
+        }
       },
       {
         "FunctionName": "ex-cf-invalidate",
@@ -5501,7 +5590,8 @@
         "EventSourceMappings": [],
         "Policy": null,
         "UrlConfig": null,
-        "Tags": null
+        "Tags": null,
+        "_LastLogEvent": null
       }
     ],
     "eventbridge_rules": [
@@ -5591,7 +5681,13 @@
         "status": "ACTIVE",
         "roleArn": "arn:aws:iam::210987654321:role/DLTStepFunctionRole",
         "_definition_length": 8421,
-        "_definition_head": "{\"StartAt\":\"Run Task\",\"States\":{"
+        "_definition_head": "{\"StartAt\":\"Run Task\",\"States\":{",
+        "_LastExecution": {
+          "name": "loadtest-2022-08-19-06-20-00",
+          "status": "SUCCEEDED",
+          "startDate": "2022-08-19T06:20:00+00:00",
+          "stopDate": "2022-08-19T06:41:12+00:00"
+        }
       }
     ],
     "dynamodb_tables": [

@@ -6,6 +6,8 @@ Cognito / API Gateway）コレクタ。
 収集の狙い（未確認事項の解消）:
 - 「誰も存在を把握していない Lambda」が何をトリガに動いているか
   → `lambda_functions` の `EventSourceMappings` / `Policy`（リソースポリシー）/ `UrlConfig`
+- **その Lambda / ステートマシンが実際に動いているか**（存在するが死んでいる資産の切り分け）
+  → `lambda_functions` の `_LastLogEvent`、`stepfunctions_state_machines` の `_LastExecution`
 - 定期実行の正体
   → `eventbridge_rules` の `ScheduleExpression` / `EventPattern` / `State` と `Targets`
 - 外部に口が開いていないか
@@ -16,9 +18,14 @@ Cognito / API Gateway）コレクタ。
 - DynamoDB は `describe_table` のみ。項目データは取得しない
 - Cognito はユーザープールの設定のみ。ユーザーは取得しない
 - Step Functions の `definition` は巨大なので長さと先頭 500 文字だけ残す
+- **ログとイベントの「本文」は読まない。** 最終実行日を得るために見るのは
+  ログストリームのメタデータ（`logs:DescribeLogStreams`）と実行の一覧
+  （`states:ListExecutions`）だけで、`logs:GetLogEvents` と
+  `states:GetExecutionHistory` はガードが拒否する側に置いたまま
 """
 from __future__ import annotations
 
+import datetime as _dt
 import json
 from typing import Any
 
@@ -31,6 +38,26 @@ from .base import Collector, jsonable, register
 _DEFINITION_HEAD = 500
 #: list_user_pools の 1 ページ上限（API 仕様の最大値）
 _USER_POOL_PAGE = 60
+#: 最終ログ書き込み時刻を引く Lambda 関数の上限
+#: （1 関数につき 1 回 describe_log_streams を呼ぶため、調査用途で十分な数で打ち切る）
+_LAMBDA_LOG_LOOKUP_LIMIT = 200
+
+
+def _epoch_ms_to_iso(value: Any) -> str | None:
+    """CloudWatch Logs のミリ秒エポックを ISO 8601（UTC）に直す。
+
+    `lastEventTimestamp` はミリ秒。判定側（questions.py）の `parse_dt` は
+    数値を「秒」として解釈するため、ここで文字列に正規化しておく。
+    生の値も併記して残すので、元データが失われることはない。
+    """
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return None
+    try:
+        return _dt.datetime.fromtimestamp(
+            float(value) / 1000.0, tz=_dt.timezone.utc
+        ).isoformat()
+    except (OverflowError, OSError, ValueError):
+        return None
 
 
 def _parse_policy(raw: Any) -> Any:
@@ -75,6 +102,7 @@ class ServerlessCollector(Collector):
         "events:ListTargetsByRule",
         "states:ListStateMachines",
         "states:DescribeStateMachine",
+        "states:ListExecutions",
         "dynamodb:ListTables",
         "dynamodb:DescribeTable",
         "sqs:ListQueues",
@@ -85,6 +113,9 @@ class ServerlessCollector(Collector):
         "cognito-idp:ListUserPools",
         "cognito-idp:DescribeUserPool",
         "apigateway:GET",
+        # Lambda の最終実行日を得るためのログ「メタデータ」参照。
+        # 本文（logs:GetLogEvents）は取得しない。
+        "logs:DescribeLogStreams",
     )
 
     def collect(self, ctx: Context) -> dict:
@@ -126,6 +157,7 @@ class ServerlessCollector(Collector):
         - `Policy` … リソースポリシー（誰が Invoke できるか。JSON をパースした dict）
         - `UrlConfig` … 関数 URL（`AuthType == "NONE"` なら完全公開）
         - `Tags` … 所有者・用途の手掛かり
+        - `_LastLogEvent` … 最終ログ書き込み時刻（**実際に動いているか**の判定用）
 
         `Environment` は値を捨てキー名のみに置換する。
         `Runtime` / `LastModified` / `Handler` はそのまま残す（EOL 判定に使う）。
@@ -134,7 +166,7 @@ class ServerlessCollector(Collector):
             ctx, "lambda", "list_functions", "Functions", context="Lambda 関数一覧",
         )
         out: list[dict] = []
-        for function in functions:
+        for index, function in enumerate(functions):
             item = dict(function)
             name = function.get("FunctionName")
             arn = function.get("FunctionArn")
@@ -147,6 +179,7 @@ class ServerlessCollector(Collector):
                 item["Policy"] = None
                 item["UrlConfig"] = None
                 item["Tags"] = None
+                item["_LastLogEvent"] = None
                 out.append(item)
                 continue
 
@@ -177,8 +210,42 @@ class ServerlessCollector(Collector):
             ) if arn else None
             item["Tags"] = (tags or {}).get("Tags") if tags else None
 
+            item["_LastLogEvent"] = (
+                self._last_log_event(ctx, str(name))
+                if index < _LAMBDA_LOG_LOOKUP_LIMIT else None
+            )
+
             out.append(item)
         return out
+
+    def _last_log_event(self, ctx: Context, name: str) -> dict | None:
+        """`/aws/lambda/<name>` の最新ログストリームから最終書き込み時刻を取る。
+
+        「存在は把握しているが、実際に動いているか分からない」Lambda を
+        切り分けるためのもの。**ログの本文は読まない**
+        （`logs:GetLogEvents` / `FilterLogEvents` はガードが拒否する）。
+        見るのはストリームのメタデータだけ。
+
+        ロググループが無い（一度も実行されていない）場合は
+        `ResourceNotFoundException` で None になり、理由は errors に残る。
+        """
+        group = f"/aws/lambda/{name}"
+        body = safe_call(
+            ctx, "logs", "describe_log_streams",
+            context=f"Lambda {name} の最終ログ書き込み",
+            logGroupName=group, orderBy="LastEventTime", descending=True, limit=1,
+        )
+        streams = (body or {}).get("logStreams") or []
+        if not streams or not isinstance(streams[0], dict):
+            return None
+        stream = streams[0]
+        timestamp = stream.get("lastEventTimestamp")
+        return {
+            "logGroupName": group,
+            "logStreamName": stream.get("logStreamName"),
+            "lastEventTimestamp": timestamp,
+            "lastEventTime": _epoch_ms_to_iso(timestamp),
+        }
 
     # ------------------------------------------------------------------
     # EventBridge
@@ -220,6 +287,8 @@ class ServerlessCollector(Collector):
         `definition` は数十 KB になることがあり、かつ ARN やパラメータが
         そのまま書かれているため、長さ（`_definition_length`）と
         先頭 500 文字（`_definition_head`）だけを残して本体は捨てる。
+
+        `_LastExecution` に直近 1 件の実行の要約を足す（**実行の入出力は取らない**）。
         """
         machines = safe_paginate(
             ctx, "stepfunctions", "list_state_machines", "stateMachines",
@@ -241,8 +310,37 @@ class ServerlessCollector(Collector):
                     body["_definition_length"] = len(definition)
                     body["_definition_head"] = definition[:_DEFINITION_HEAD]
                     item.update(body)
+                item["_LastExecution"] = self._last_execution(
+                    ctx, arn, str(machine.get("name") or arn)
+                )
+            else:
+                item["_LastExecution"] = None
             out.append(item)
         return out
+
+    def _last_execution(self, ctx: Context, arn: str, label: str) -> dict | None:
+        """直近 1 件の実行だけを引く。
+
+        「最後にいつ使われたか」が分かれば、使われていないステートマシンを
+        削除候補として切り出せる。`list_executions` は新しい順に返す。
+        実行の入出力（`states:GetExecutionHistory` / `DescribeExecution` の
+        `input` / `output`）は業務データそのものなので取得しない。
+        """
+        body = safe_call(
+            ctx, "stepfunctions", "list_executions",
+            context=f"ステートマシン {label} の直近実行",
+            stateMachineArn=arn, maxResults=1,
+        )
+        executions = (body or {}).get("executions") or []
+        if not executions or not isinstance(executions[0], dict):
+            return None
+        execution = executions[0]
+        return {
+            "name": execution.get("name"),
+            "status": execution.get("status"),
+            "startDate": execution.get("startDate"),
+            "stopDate": execution.get("stopDate"),
+        }
 
     # ------------------------------------------------------------------
     # DynamoDB

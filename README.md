@@ -18,7 +18,7 @@
 
 | 出力 | 内容 |
 |---|---|
-| `out/inventory.json` | インベントリ。8コレクタ・153 の読み取り API の結果（**既定でマスク済み**） |
+| `out/inventory.json` | インベントリ。8コレクタ・37 サービス／157 の読み取りアクションの結果（**既定でマスク済み**） |
 | `out/未確認事項_突合レポート.md` | **Q1〜Q42 を自動判定**。確定 / 部分的に確定 / 要ヒアリング / データ無し を根拠付きで |
 | `out/セキュリティ設定_実施状況.md` | **72 項目の実施状況**（CIS AWS Foundations v3.0 / AWS FSBP 準拠）。ドメイン別スコアと是正方針 |
 | `out/AWS実査_棚卸し.xlsx` | 16 シートの棚卸し表。0.0.0.0/0 開放や未実施項目は色で強調 |
@@ -29,8 +29,8 @@
 
 | 区分 | 件数 | 例 |
 |---|---:|---|
-| **確定（answered）** | 19 | Q1(WAF の有無)・Q37(実CIDR と重複)・Q38(NAT 台数とクロスAZ)・Q33(サブネット名と実AZの食い違い)・Q7(EFS の物理分離)・Q23(Global Accelerator の向き先)・Q42(Config/FlowLogs/ALBログの実有効化) |
-| **部分的に確定（partial）** | 17 | Q8(22番の許可元。IP の持ち主だけ不明)・Q9(起動時の鍵は判明。追記された鍵は EC2 内部が必要)・Q27(外部配信 StackSet の権限モデル) |
+| **確定（answered）** | 20 | Q1(WAF の有無)・Q37(実CIDR と重複)・Q38(NAT 台数とクロスAZ)・Q33(サブネット名と実AZの食い違い)・Q7(EFS の物理分離)・Q23(Global Accelerator の向き先)・Q42(Config/FlowLogs/ALBログの実有効化) |
+| **部分的に確定（partial）** | 16 | Q8(22番の許可元。IP の持ち主だけ不明)・Q9(起動時の鍵は判明。追記された鍵は EC2 内部が必要)・Q27(外部配信 StackSet の権限モデル) |
 | **要ヒアリング（needs_manual）** | 6 | Q19/Q20/Q22(契約と運用)・Q31/Q32/Q36(EC2 内部・ベンダー製エージェントの内部設定) |
 
 内訳は対象環境によって変わる。`host-probe` で EC2 内部まで調べると
@@ -141,7 +141,7 @@ pip install -e .                         # awsprobe コマンドが入る
 ```
 
 権限は **AWS 管理ポリシー `ReadOnlyAccess`** を実行者に付ければ足りる。
-より狭くしたい場合は `docs/iam-policy-readonly.json`（153 アクション / 37 サービス）を使う。
+より狭くしたい場合は `docs/iam-policy-readonly.json`（157 アクション / 38 サービス）を使う。
 違いは `docs/iam-policy-readonly.md` を参照。
 
 ### 3-2. まず doctor
@@ -268,7 +268,7 @@ docs/
 ├── iam-policy-readonly.md    ReadOnlyAccess との違い
 └── manual-ssh-commands.md    手動調査手順書（host-probe が生成）
 
-tests/                  329 テスト / 1,532 サブテスト
+tests/                  337 テスト / 1,539 サブテスト
 └── fixtures/inventory_example.json   実 AWS 無しで全機能を動かせるダミーデータ
 ```
 
@@ -278,7 +278,7 @@ tests/                  329 テスト / 1,532 サブテスト
 
 ```
 $ python3 -m pytest tests/ -q
-329 passed, 1532 subtests passed in 27.40s
+337 passed, 1539 subtests passed in 13.12s
 ```
 
 検証済みの内容:

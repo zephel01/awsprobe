@@ -18,7 +18,7 @@ python -m awsprobe.gen_iam_policy
 
 1. **`AwsprobeReadOnlyCollect`（`Effect: Allow`）**
    `awsprobe collect` が発行する読み取り系 API（`Describe*` / `List*` /
-   `Get*` 等）のみを、37 サービス・153 アクションに絞ってサービスごとに
+   `Get*` 等）のみを、38 サービス・157 アクションに絞ってサービスごとに
    グループ化して列挙している。`Resource` はすべて `"*"`
    （読み取り専用 API の大半はリソース単位の絞り込みに対応していないため）。
 
@@ -41,7 +41,7 @@ AWS のほぼ全サービスの読み取り系 API**（数百サービス分）�
 実務上「読み取りなら何でも見える」に近い非常に広いポリシーである。
 一方 `docs/iam-policy-readonly.json` は **awsprobe の8コレクタ
 （network / compute / database / storage / edge / serverless / logging /
-security）が実際に呼び出す 37 サービス・153 アクションだけ**に絞った、
+security）が実際に呼び出す 38 サービス・157 アクションだけ**に絞った、
 `ReadOnlyAccess` の厳密な部分集合に近いポリシーであり、監査対象の調査に
 不要な権限（例えば awsprobe が触らない Redshift・SageMaker・EMR 等）を
 一切含まない分だけ攻撃対象・誤用リスクが小さい。**最小権限の原則を優先

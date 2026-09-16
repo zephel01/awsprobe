@@ -9,6 +9,8 @@
   → `instance_statuses` を `IncludeAllInstances=True` で取得し `Events` を見る
 - 使用中 AMI が廃止予定かどうか
   → `images` の `CreationDate` / `DeprecationTime`
+- **AMI / EBS スナップショットの定期取得が仕組みとして存在するか**
+  → `dlm_lifecycle_policies`（Data Lifecycle Manager のポリシーとスケジュール）
 - **SSM で EC2 の中を調べられるか**（host-probe を SSM 経由にできるかの判定）
   → `ssm_managed_instances`（ssm:DescribeInstanceInformation）が最重要
 - **EBS のアカウント既定暗号化が効いているか**（新規ボリュームが自動で暗号化されるか）
@@ -39,6 +41,8 @@ _PATCH_BATCH = 50
 _INVENTORY_LIMIT = 50
 #: describe_instance_credit_specifications の InstanceIds 上限（自主上限）
 _CREDIT_BATCH = 50
+#: 詳細（スケジュール・保持世代）を引く DLM ポリシーの上限
+_DLM_POLICY_LIMIT = 50
 #: バースト可能インスタンスファミリの接頭辞。
 #: describe_instance_credit_specifications は T 系以外を渡すとエラーになるため、
 #: あらかじめ絞り込んでから呼ぶ。
@@ -74,6 +78,9 @@ class ComputeCollector(Collector):
         "ec2:GetEbsDefaultKmsKeyId",
         "ec2:DescribeInstanceCreditSpecifications",
         "ec2:DescribeInstanceConnectEndpoints",
+        # AMI / スナップショットの定期取得が仕組みとして有るかの確認
+        "dlm:GetLifecyclePolicies",
+        "dlm:GetLifecyclePolicy",
     )
 
     def collect(self, ctx: Context) -> dict:
@@ -150,6 +157,8 @@ class ComputeCollector(Collector):
 
         # -- EC2 Instance Connect Endpoint ------------------------------------
         # SSH 鍵を配らずに接続できる経路。あれば鍵配布の廃止根拠になる。
+        data["dlm_lifecycle_policies"] = self._collect_dlm_policies(ctx)
+
         data["instance_connect_endpoints"] = safe_paginate(
             ctx, "ec2", "describe_instance_connect_endpoints",
             "InstanceConnectEndpoints", context="Instance Connect Endpoint 一覧",
@@ -275,6 +284,37 @@ class ComputeCollector(Collector):
         if not resp:
             return {}
         return {k: v for k, v in resp.items() if k != "ResponseMetadata"}
+
+    def _collect_dlm_policies(self, ctx: Context) -> list[dict]:
+        """Data Lifecycle Manager のポリシー一覧に、各ポリシーの詳細を足す。
+
+        「AMI やスナップショットが定期取得されているか」は、
+        取得された成果物（`images` / `snapshots`）からは
+        *仕組みとして* 動いているのか手動なのかを判別できない。
+        DLM のポリシーが存在すれば、スケジュールと保持世代まで確定する。
+
+        `get_lifecycle_policies` はページネータを持たないので `safe_call` を使う。
+        一覧は要約（`PolicyId` / `State` / `Description`）しか返さないため、
+        スケジュールと保持世代は `get_lifecycle_policy` で 1 件ずつ引く。
+        """
+        body = safe_call(ctx, "dlm", "get_lifecycle_policies", context="DLM ポリシー一覧")
+        summaries = (body or {}).get("Policies") or []
+        out: list[dict] = []
+        for summary in summaries[:_DLM_POLICY_LIMIT]:
+            if not isinstance(summary, dict):
+                continue
+            item = dict(summary)
+            policy_id = summary.get("PolicyId")
+            if policy_id:
+                detail = safe_call(
+                    ctx, "dlm", "get_lifecycle_policy",
+                    context=f"DLM ポリシー {policy_id}", PolicyId=policy_id,
+                )
+                policy = (detail or {}).get("Policy") if detail else None
+                if isinstance(policy, dict):
+                    item.update({k: v for k, v in policy.items() if k != "PolicyId"})
+            out.append(item)
+        return out
 
     def _collect_credit_specifications(
         self, ctx: Context, instances: list[dict]
