@@ -1,0 +1,28 @@
+# 原本（個別情報を含む）と作業用フォルダ。絶対に公開しないこと。
+_original/
+_OUTPUTS/
+
+# 実査結果には対象環境の機微な情報が含まれる。リポジトリに入れないこと。
+out/
+採取結果/
+
+# Python
+*.py[cod]
+__pycache__/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# テスト・ツール
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# エディタ・OS
+.vscode/
+.idea/
+.DS_Store

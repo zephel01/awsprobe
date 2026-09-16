@@ -1,0 +1,6346 @@
+{
+  "meta": {
+    "awsprobe_version": "1.0.0",
+    "collected_at": "2026-09-16T12:34:56+09:00",
+    "account_id": "210987654321",
+    "account_alias": "example",
+    "region": "ap-northeast-1",
+    "caller_arn": "arn:aws:sts::210987654321:assumed-role/awsprobe-readonly/awsprobe",
+    "redacted": false,
+    "collectors_run": [
+      "network",
+      "compute",
+      "database",
+      "storage",
+      "edge",
+      "serverless",
+      "logging",
+      "security"
+    ],
+    "guard": {
+      "total_calls": 412,
+      "distinct_operations": 96,
+      "operations": {}
+    }
+  },
+  "errors": [
+    {
+      "service": "inspector2",
+      "operation": "batch_get_account_status",
+      "code": "AccessDeniedException",
+      "message": "User is not authorized to perform: inspector2:BatchGetAccountStatus",
+      "context": "Inspector の有効状況"
+    },
+    {
+      "service": "ssm",
+      "operation": "list_inventory_entries",
+      "code": "AccessDeniedException",
+      "message": "User is not authorized to perform: ssm:ListInventoryEntries",
+      "context": "インベントリ i-0prod01"
+    },
+    {
+      "service": "s3",
+      "operation": "get_bucket_policy",
+      "code": "NoSuchBucketPolicy",
+      "message": "The bucket policy does not exist",
+      "context": "バケット chatdata-develop"
+    },
+    {
+      "service": "s3",
+      "operation": "get_bucket_website",
+      "code": "NoSuchWebsiteConfiguration",
+      "message": "The specified bucket does not have a website configuration",
+      "context": "バケット chatdata-production"
+    },
+    {
+      "service": "efs",
+      "operation": "describe_file_system_policy",
+      "code": "PolicyNotFound",
+      "message": "Policy not found",
+      "context": "EFS fs-0prod1 のポリシー"
+    }
+  ],
+  "network": {
+    "vpcs": [
+      {
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.0.0/16",
+        "IsDefault": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "CidrBlockAssociationSet": [
+          {
+            "AssociationId": "vpc-cidr-assoc-01",
+            "CidrBlock": "172.31.0.0/16",
+            "CidrBlockState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Tags": []
+      }
+    ],
+    "subnets": [
+      {
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.48.0/24",
+        "AvailabilityZone": "ap-northeast-1a",
+        "AvailabilityZoneId": "apne1-az4",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-public-subnet-1a"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0a12",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.49.0/24",
+        "AvailabilityZone": "ap-northeast-1c",
+        "AvailabilityZoneId": "apne1-az1",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-public-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0a13",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.50.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-public-subnet-1d"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.52.0/24",
+        "AvailabilityZone": "ap-northeast-1a",
+        "AvailabilityZoneId": "apne1-az4",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-private-subnet-1a"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.53.0/24",
+        "AvailabilityZone": "ap-northeast-1c",
+        "AvailabilityZoneId": "apne1-az1",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-private-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0a23",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.54.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-private-subnet-1d"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0b11",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.64.0/24",
+        "AvailabilityZone": "ap-northeast-1c",
+        "AvailabilityZoneId": "apne1-az1",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-public-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0b21",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.65.0/24",
+        "AvailabilityZone": "ap-northeast-1c",
+        "AvailabilityZoneId": "apne1-az1",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-private-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0c11",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.66.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-public-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.67.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-private-subnet-1c"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.80.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-spare-public-subnet-1d"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0d21",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.81.0/24",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 240,
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": false,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-spare-private-subnet-1d"
+          }
+        ]
+      },
+      {
+        "SubnetId": "subnet-0e01",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.0.0/20",
+        "AvailabilityZone": "ap-northeast-1a",
+        "AvailabilityZoneId": "apne1-az4",
+        "AvailableIpAddressCount": 4080,
+        "DefaultForAz": true,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": []
+      },
+      {
+        "SubnetId": "subnet-0e02",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.16.0/20",
+        "AvailabilityZone": "ap-northeast-1c",
+        "AvailabilityZoneId": "apne1-az1",
+        "AvailableIpAddressCount": 4080,
+        "DefaultForAz": true,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": []
+      },
+      {
+        "SubnetId": "subnet-0e03",
+        "VpcId": "vpc-52e30834",
+        "CidrBlock": "172.31.32.0/20",
+        "AvailabilityZone": "ap-northeast-1d",
+        "AvailabilityZoneId": "apne1-az2",
+        "AvailableIpAddressCount": 4080,
+        "DefaultForAz": true,
+        "MapPublicIpOnLaunch": true,
+        "State": "available",
+        "OwnerId": "210987654321",
+        "Tags": []
+      }
+    ],
+    "route_tables": [
+      {
+        "RouteTableId": "rtb-prodpub",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-public-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-p0",
+            "SubnetId": "subnet-0a11",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-p1",
+            "SubnetId": "subnet-0a12",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-p2",
+            "SubnetId": "subnet-0a13",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "GatewayId": "igw-15a65072",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-prodpri",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-private-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-q0",
+            "SubnetId": "subnet-0a21",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-q1",
+            "SubnetId": "subnet-0a22",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-q2",
+            "SubnetId": "subnet-0a23",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "NatGatewayId": "nat-0a1a1a1a",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-demopub",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-public-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-r0",
+            "SubnetId": "subnet-0b11",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "GatewayId": "igw-15a65072",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-demopri",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-private-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-s0",
+            "SubnetId": "subnet-0b21",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "NatGatewayId": "nat-0a1a1a1a",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-stgpub",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-public-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-t0",
+            "SubnetId": "subnet-0c11",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "GatewayId": "igw-15a65072",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-stgpri",
+        "VpcId": "vpc-52e30834",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-private-rtb"
+          }
+        ],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-u0",
+            "SubnetId": "subnet-0c21",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "NatGatewayId": "nat-0a1a1a1a",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      },
+      {
+        "RouteTableId": "rtb-318fcf57",
+        "VpcId": "vpc-52e30834",
+        "Tags": [],
+        "Associations": [
+          {
+            "RouteTableAssociationId": "rtbassoc-main",
+            "Main": true,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-v0",
+            "SubnetId": "subnet-0d11",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          },
+          {
+            "RouteTableAssociationId": "rtbassoc-v1",
+            "SubnetId": "subnet-0d21",
+            "Main": false,
+            "AssociationState": {
+              "State": "associated"
+            }
+          }
+        ],
+        "Routes": [
+          {
+            "DestinationCidrBlock": "172.31.0.0/16",
+            "GatewayId": "local",
+            "State": "active",
+            "Origin": "CreateRouteTable"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "GatewayId": "igw-15a65072",
+            "State": "active",
+            "Origin": "CreateRoute"
+          }
+        ]
+      }
+    ],
+    "network_acls": [
+      {
+        "NetworkAclId": "acl-43d54d25",
+        "VpcId": "vpc-52e30834",
+        "IsDefault": true,
+        "OwnerId": "210987654321",
+        "Entries": [
+          {
+            "RuleNumber": 100,
+            "Protocol": "-1",
+            "RuleAction": "allow",
+            "Egress": false,
+            "CidrBlock": "0.0.0.0/0"
+          },
+          {
+            "RuleNumber": 32767,
+            "Protocol": "-1",
+            "RuleAction": "deny",
+            "Egress": false,
+            "CidrBlock": "0.0.0.0/0"
+          },
+          {
+            "RuleNumber": 100,
+            "Protocol": "-1",
+            "RuleAction": "allow",
+            "Egress": true,
+            "CidrBlock": "0.0.0.0/0"
+          },
+          {
+            "RuleNumber": 32767,
+            "Protocol": "-1",
+            "RuleAction": "deny",
+            "Egress": true,
+            "CidrBlock": "0.0.0.0/0"
+          }
+        ],
+        "Associations": [
+          {
+            "NetworkAclAssociationId": "aclassoc-0",
+            "SubnetId": "subnet-0a11",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-1",
+            "SubnetId": "subnet-0a12",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-2",
+            "SubnetId": "subnet-0a13",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-3",
+            "SubnetId": "subnet-0a21",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-4",
+            "SubnetId": "subnet-0a22",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-5",
+            "SubnetId": "subnet-0a23",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-6",
+            "SubnetId": "subnet-0b11",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-7",
+            "SubnetId": "subnet-0b21",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-8",
+            "SubnetId": "subnet-0c11",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-9",
+            "SubnetId": "subnet-0c21",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-10",
+            "SubnetId": "subnet-0d11",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-11",
+            "SubnetId": "subnet-0d21",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-12",
+            "SubnetId": "subnet-0e01",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-13",
+            "SubnetId": "subnet-0e02",
+            "NetworkAclId": "acl-43d54d25"
+          },
+          {
+            "NetworkAclAssociationId": "aclassoc-14",
+            "SubnetId": "subnet-0e03",
+            "NetworkAclId": "acl-43d54d25"
+          }
+        ],
+        "Tags": []
+      }
+    ],
+    "internet_gateways": [
+      {
+        "InternetGatewayId": "igw-15a65072",
+        "OwnerId": "210987654321",
+        "Attachments": [
+          {
+            "State": "available",
+            "VpcId": "vpc-52e30834"
+          }
+        ],
+        "Tags": []
+      }
+    ],
+    "nat_gateways": [
+      {
+        "NatGatewayId": "nat-0a1a1a1a",
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "State": "available",
+        "ConnectivityType": "public",
+        "CreateTime": "2022-04-18T02:11:03+00:00",
+        "NatGatewayAddresses": [
+          {
+            "AllocationId": "eipalloc-0aa11",
+            "NetworkInterfaceId": "eni-nat0",
+            "PrivateIp": "172.31.48.40",
+            "PublicIp": "198.51.100.10"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-natgw-1a"
+          }
+        ]
+      }
+    ],
+    "egress_only_internet_gateways": [],
+    "network_interfaces": [
+      {
+        "NetworkInterfaceId": "eni-ga00",
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.48.20",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ga01",
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.48.21",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ga10",
+        "SubnetId": "subnet-0a12",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.49.20",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ga11",
+        "SubnetId": "subnet-0a12",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.49.21",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ga20",
+        "SubnetId": "subnet-0a13",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.410.20",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ga21",
+        "SubnetId": "subnet-0a13",
+        "VpcId": "vpc-52e30834",
+        "Description": "Global Accelerator 8f3a2b1c",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.410.21",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-ga"
+          }
+        ],
+        "RequesterId": "amazon-aws-global-accelerator",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-alb0",
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "Description": "ELB app/prod-web-elb/0123456789abcdef",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.48.30",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-elb"
+          }
+        ],
+        "RequesterId": "amazon-elb",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-alb1",
+        "SubnetId": "subnet-0a12",
+        "VpcId": "vpc-52e30834",
+        "Description": "ELB app/prod-web-elb/0123456789abcdef",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.49.30",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-elb"
+          }
+        ],
+        "RequesterId": "amazon-elb",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-nat0",
+        "SubnetId": "subnet-0a11",
+        "VpcId": "vpc-52e30834",
+        "Description": "Interface for NAT Gateway nat-0a1a1a1a",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.48.40",
+        "OwnerId": "210987654321",
+        "Groups": [],
+        "RequesterId": "amazon-aws",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp0",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod1",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.60",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp1",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod2",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.61",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp2",
+        "SubnetId": "subnet-0a23",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod3",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.54.62",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp3",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod1",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.63",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp4",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod2",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.64",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp5",
+        "SubnetId": "subnet-0a23",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod3",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.54.65",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp6",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod1",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.66",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp7",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod2",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.67",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsp8",
+        "SubnetId": "subnet-0a23",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-prod3",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.54.68",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc0",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check1",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.80",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc1",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check2",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.81",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc2",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check3",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.82",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc3",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check1",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.83",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc4",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check2",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.84",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-efsc5",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "EFS mount target for fs-check3",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.53.85",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-efs"
+          }
+        ],
+        "RequesterId": "amazon-elasticfilesystem",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-ec20",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.100",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0prod01",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec21",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.101",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-prod-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0prod02",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec22",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.102",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0chk01",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec23",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.103",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-check-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0chk02",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec24",
+        "SubnetId": "subnet-0b21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.104",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-demo-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0demo01",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec25",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.105",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0stg01",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec26",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.106",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg2-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0stg02",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-ec27",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Description": "Primary network interface",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.52.107",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg3-ec2"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "i-0stg03",
+          "Status": "attached",
+          "DeviceIndex": 0
+        }
+      },
+      {
+        "NetworkInterfaceId": "eni-spare0",
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "Description": "created by lambda-vpc-config",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.80.10",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-elb"
+          }
+        ],
+        "RequesterId": "amazon-aws",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-spare1",
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "Description": "",
+        "InterfaceType": "interface",
+        "Status": "available",
+        "PrivateIpAddress": "172.31.80.11",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-elb"
+          }
+        ]
+      },
+      {
+        "NetworkInterfaceId": "eni-spare2",
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "Description": "created by lambda-vpc-config",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.80.12",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-elb"
+          }
+        ],
+        "RequesterId": "amazon-aws",
+        "RequesterManaged": true
+      },
+      {
+        "NetworkInterfaceId": "eni-spare3",
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "Description": "",
+        "InterfaceType": "interface",
+        "Status": "available",
+        "PrivateIpAddress": "172.31.80.13",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-elb"
+          }
+        ]
+      },
+      {
+        "NetworkInterfaceId": "eni-spare4",
+        "SubnetId": "subnet-0d11",
+        "VpcId": "vpc-52e30834",
+        "Description": "created by lambda-vpc-config",
+        "InterfaceType": "interface",
+        "Status": "in-use",
+        "PrivateIpAddress": "172.31.80.14",
+        "OwnerId": "210987654321",
+        "Groups": [
+          {
+            "GroupId": "sg-stg-elb"
+          }
+        ],
+        "RequesterId": "amazon-aws",
+        "RequesterManaged": true
+      }
+    ],
+    "security_groups": [
+      {
+        "GroupId": "sg-prod-elb",
+        "GroupName": "ex-prod-elb-sg",
+        "Description": "本番ALB",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-elb-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-prod-ec2",
+        "GroupName": "ex-prod-ec2-sg",
+        "Description": "本番EC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-prod-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28",
+                "Description": "保守拠点"
+              },
+              {
+                "CidrIp": "198.51.100.32/28",
+                "Description": "開発ベンダー"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-prod-rds",
+        "GroupName": "ex-prod-rds-sg",
+        "Description": "本番RDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-prod-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-prod-efs",
+        "GroupName": "ex-prod-efs-sg",
+        "Description": "本番EFS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 2049,
+            "ToPort": 2049,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-prod-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-efs-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-check-elb",
+        "GroupName": "ex-check-elb-sg",
+        "Description": "checkALB",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-elb-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-check-ec2",
+        "GroupName": "ex-check-ec2-sg",
+        "Description": "checkEC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-check-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-check-rds",
+        "GroupName": "ex-check-rds-sg",
+        "Description": "checkRDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-check-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-check-efs",
+        "GroupName": "ex-check-efs-sg",
+        "Description": "checkEFS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 2049,
+            "ToPort": 2049,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-check-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-efs-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-demo-elb",
+        "GroupName": "ex-demo-elb-sg",
+        "Description": "demoALB",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-elb-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-demo-ec2",
+        "GroupName": "ex-demo-ec2-sg",
+        "Description": "demoEC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-demo-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-demo-rds",
+        "GroupName": "ex-demo-rds-sg",
+        "Description": "demoRDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-demo-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg-elb",
+        "GroupName": "ex-stg-elb-sg",
+        "Description": "stg/stg2/stg3 共用ALB",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-elb-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg-ec2",
+        "GroupName": "ex-stg-ec2-sg",
+        "Description": "stgEC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-stg-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg-rds",
+        "GroupName": "ex-stg-rds-sg",
+        "Description": "stgRDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-stg-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg2-ec2",
+        "GroupName": "ex-stg2-ec2-sg",
+        "Description": "stg2EC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-stg-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg2-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg2-rds",
+        "GroupName": "ex-stg2-rds-sg",
+        "Description": "stg2RDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [
+              {
+                "CidrIp": "172.31.0.0/16"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg2-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg3-ec2",
+        "GroupName": "ex-stg3-ec2-sg",
+        "Description": "stg3EC2",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-stg-elb",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "IpRanges": [
+              {
+                "CidrIp": "203.0.113.16/28"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg3-ec2-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-stg3-rds",
+        "GroupName": "ex-stg3-rds-sg",
+        "Description": "stg3RDS",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "IpRanges": [],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [
+              {
+                "GroupId": "sg-stg3-ec2",
+                "UserId": "210987654321"
+              }
+            ],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg3-rds-sg"
+          }
+        ]
+      },
+      {
+        "GroupId": "sg-ga",
+        "GroupName": "GlobalAccelerator",
+        "Description": "Global Accelerator 自動生成",
+        "VpcId": "vpc-52e30834",
+        "OwnerId": "210987654321",
+        "IpPermissions": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 443,
+            "ToPort": 443,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "IpProtocol": "-1",
+            "IpRanges": [
+              {
+                "CidrIp": "0.0.0.0/0"
+              }
+            ],
+            "Ipv6Ranges": [],
+            "UserIdGroupPairs": [],
+            "PrefixListIds": []
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "GlobalAccelerator"
+          }
+        ]
+      }
+    ],
+    "vpc_peering_connections": [],
+    "vpc_endpoints": [
+      {
+        "VpcEndpointId": "vpce-0s3",
+        "VpcEndpointType": "Gateway",
+        "ServiceName": "com.amazonaws.ap-northeast-1.s3",
+        "VpcId": "vpc-52e30834",
+        "State": "available"
+      }
+    ],
+    "transit_gateway_vpc_attachments": [],
+    "elastic_ips": [
+      {
+        "AllocationId": "eipalloc-0aa11",
+        "PublicIp": "198.51.100.10",
+        "NetworkInterfaceId": "eni-nat0",
+        "Domain": "vpc",
+        "Tags": []
+      }
+    ],
+    "prefix_lists": [],
+    "availability_zones": [
+      {
+        "ZoneName": "ap-northeast-1a",
+        "ZoneId": "apne1-az4",
+        "State": "available",
+        "RegionName": "ap-northeast-1"
+      },
+      {
+        "ZoneName": "ap-northeast-1c",
+        "ZoneId": "apne1-az1",
+        "State": "available",
+        "RegionName": "ap-northeast-1"
+      },
+      {
+        "ZoneName": "ap-northeast-1d",
+        "ZoneId": "apne1-az2",
+        "State": "available",
+        "RegionName": "ap-northeast-1"
+      }
+    ]
+  },
+  "compute": {
+    "instances": [
+      {
+        "InstanceId": "i-0prod01",
+        "_reservation_id": "r-00",
+        "InstanceType": "t3.medium",
+        "ImageId": "ami-0dn2023base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1a",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-prod-ec2",
+            "GroupName": "sg-prod-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root0",
+              "Status": "attached"
+            }
+          },
+          {
+            "DeviceName": "/dev/xvdf",
+            "Ebs": {
+              "VolumeId": "vol-0data0",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "optional",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-ec2-01"
+          },
+          {
+            "Key": "Environment",
+            "Value": "prod"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0prod02",
+        "_reservation_id": "r-01",
+        "InstanceType": "t3.medium",
+        "ImageId": "ami-0dn2023base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1c",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-prod-ec2",
+            "GroupName": "sg-prod-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root1",
+              "Status": "attached"
+            }
+          },
+          {
+            "DeviceName": "/dev/xvdf",
+            "Ebs": {
+              "VolumeId": "vol-0data1",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "optional",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-ec2-02"
+          },
+          {
+            "Key": "Environment",
+            "Value": "prod"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0chk01",
+        "_reservation_id": "r-02",
+        "InstanceType": "t3.small",
+        "ImageId": "ami-0dn2023base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0a21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1a",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-check-ec2",
+            "GroupName": "sg-check-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root2",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "optional",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-ec2-01"
+          },
+          {
+            "Key": "Environment",
+            "Value": "check"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0chk02",
+        "_reservation_id": "r-03",
+        "InstanceType": "t3.small",
+        "ImageId": "ami-0dn2023base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0a22",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1c",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-check-ec2",
+            "GroupName": "sg-check-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root3",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "optional",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-ec2-02"
+          },
+          {
+            "Key": "Environment",
+            "Value": "check"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0demo01",
+        "_reservation_id": "r-04",
+        "InstanceType": "t3.small",
+        "ImageId": "ami-0dn2021base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0b21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1c",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-demo-ec2",
+            "GroupName": "sg-demo-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root4",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "required",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-demo-ec2"
+          },
+          {
+            "Key": "Environment",
+            "Value": "demo"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0stg01",
+        "_reservation_id": "r-05",
+        "InstanceType": "t3.small",
+        "ImageId": "ami-0dn2021base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1d",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": "ex-common-key",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-stg-ec2",
+            "GroupName": "sg-stg-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root5",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "required",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg-ec2"
+          },
+          {
+            "Key": "Environment",
+            "Value": "stg"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0stg02",
+        "_reservation_id": "r-06",
+        "InstanceType": "t3.small",
+        "ImageId": "ami-0dn2021base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1d",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": null,
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-stg2-ec2",
+            "GroupName": "sg-stg2-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root6",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "required",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg2-ec2"
+          },
+          {
+            "Key": "Environment",
+            "Value": "stg2"
+          }
+        ]
+      },
+      {
+        "InstanceId": "i-0stg03",
+        "_reservation_id": "r-07",
+        "InstanceType": "t3.micro",
+        "ImageId": "ami-0dn2021base",
+        "PlatformDetails": "Linux/UNIX",
+        "Architecture": "x86_64",
+        "SubnetId": "subnet-0c21",
+        "VpcId": "vpc-52e30834",
+        "Placement": {
+          "AvailabilityZone": "ap-northeast-1d",
+          "Tenancy": "default"
+        },
+        "State": {
+          "Code": 16,
+          "Name": "running"
+        },
+        "LaunchTime": "2024-03-11T01:20:00+00:00",
+        "KeyName": null,
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-stg3-ec2",
+            "GroupName": "sg-stg3-ec2"
+          }
+        ],
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::210987654321:instance-profile/ex-ec2-role",
+          "Id": "AIPAEXAMPLE"
+        },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeId": "vol-0root7",
+              "Status": "attached"
+            }
+          }
+        ],
+        "MetadataOptions": {
+          "HttpTokens": "required",
+          "HttpEndpoint": "enabled"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "CpuOptions": {
+          "CoreCount": 1,
+          "ThreadsPerCore": 2
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-stg3-ec2"
+          },
+          {
+            "Key": "Environment",
+            "Value": "stg3"
+          }
+        ]
+      }
+    ],
+    "instance_statuses": [
+      {
+        "InstanceId": "i-0prod01",
+        "AvailabilityZone": "ap-northeast-1a",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0prod02",
+        "AvailabilityZone": "ap-northeast-1c",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0chk01",
+        "AvailabilityZone": "ap-northeast-1a",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0chk02",
+        "AvailabilityZone": "ap-northeast-1c",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0demo01",
+        "AvailabilityZone": "ap-northeast-1c",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0stg01",
+        "AvailabilityZone": "ap-northeast-1d",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0stg02",
+        "AvailabilityZone": "ap-northeast-1d",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      },
+      {
+        "InstanceId": "i-0stg03",
+        "AvailabilityZone": "ap-northeast-1d",
+        "InstanceState": {
+          "Name": "running"
+        },
+        "Events": []
+      }
+    ],
+    "images": [
+      {
+        "ImageId": "ami-0dn2023base",
+        "Name": "ex-base-amazonlinux2-20230815",
+        "Description": "Example 共通ベースAMI",
+        "OwnerId": "210987654321",
+        "CreationDate": "2023-08-15T04:00:00.000Z",
+        "State": "available",
+        "PlatformDetails": "Linux/UNIX",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda"
+          }
+        ],
+        "Public": false,
+        "EnaSupport": true
+      },
+      {
+        "ImageId": "ami-0dn2021base",
+        "Name": "ex-base-amazonlinux2-20211201",
+        "Description": "Example 共通ベースAMI（旧）",
+        "OwnerId": "210987654321",
+        "CreationDate": "2021-12-01T04:00:00.000Z",
+        "DeprecationTime": "2025-12-01T04:00:00.000Z",
+        "State": "available",
+        "PlatformDetails": "Linux/UNIX",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda"
+          }
+        ],
+        "Public": false,
+        "EnaSupport": true
+      },
+      {
+        "ImageId": "ami-0dn2024snap",
+        "Name": "ex-prod-ec2-01-backup-20240701",
+        "Description": "手動取得のバックアップAMI",
+        "OwnerId": "210987654321",
+        "CreationDate": "2024-07-01T19:03:11.000Z",
+        "State": "available",
+        "PlatformDetails": "Linux/UNIX",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda"
+          }
+        ],
+        "Public": false,
+        "EnaSupport": true
+      }
+    ],
+    "volumes": [
+      {
+        "VolumeId": "vol-0root0",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1a"
+      },
+      {
+        "VolumeId": "vol-0root1",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1c"
+      },
+      {
+        "VolumeId": "vol-0root2",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1a"
+      },
+      {
+        "VolumeId": "vol-0root3",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1c"
+      },
+      {
+        "VolumeId": "vol-0root4",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1c"
+      },
+      {
+        "VolumeId": "vol-0root5",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1d"
+      },
+      {
+        "VolumeId": "vol-0root6",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1d"
+      },
+      {
+        "VolumeId": "vol-0root7",
+        "Size": 50,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1d"
+      },
+      {
+        "VolumeId": "vol-0data0",
+        "Size": 200,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1a"
+      },
+      {
+        "VolumeId": "vol-0data1",
+        "Size": 200,
+        "VolumeType": "gp3",
+        "Encrypted": false,
+        "State": "in-use",
+        "AvailabilityZone": "ap-northeast-1c"
+      }
+    ],
+    "snapshots": [
+      {
+        "SnapshotId": "snap-0aa1",
+        "VolumeId": "vol-0root0",
+        "StartTime": "2024-07-01T19:00:00+00:00",
+        "State": "completed",
+        "OwnerId": "210987654321",
+        "VolumeSize": 50,
+        "Encrypted": false,
+        "KmsKeyId": null,
+        "CreateVolumePermissions": [],
+        "Description": "手動取得（AMI 作成時の自動スナップショット）",
+        "Progress": "100%"
+      }
+    ],
+    "auto_scaling_groups": [],
+    "launch_templates": [],
+    "key_pairs": [
+      {
+        "KeyPairId": "key-0common",
+        "KeyName": "ex-common-key",
+        "KeyFingerprint": "aa:bb:cc:dd:ee:ff:00:11:22:33:44:55:66:77:88:99",
+        "CreateTime": "2021-11-02T09:12:00+00:00",
+        "KeyType": "rsa",
+        "Tags": []
+      },
+      {
+        "KeyPairId": "key-0legacy",
+        "KeyName": "ex-legacy-key",
+        "KeyFingerprint": "11:22:33:44:55:66:77:88:99:aa:bb:cc:dd:ee:ff:00",
+        "CreateTime": "2020-05-20T03:44:00+00:00",
+        "KeyType": "rsa",
+        "Tags": []
+      }
+    ],
+    "ssm_managed_instances": [
+      {
+        "InstanceId": "i-0prod01",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      },
+      {
+        "InstanceId": "i-0prod02",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      },
+      {
+        "InstanceId": "i-0chk01",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      },
+      {
+        "InstanceId": "i-0chk02",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      },
+      {
+        "InstanceId": "i-0demo01",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      },
+      {
+        "InstanceId": "i-0stg01",
+        "PingStatus": "Online",
+        "AgentVersion": "3.2.1377.0",
+        "PlatformType": "Linux",
+        "PlatformName": "Amazon Linux",
+        "PlatformVersion": "2",
+        "LastPingDateTime": "2026-09-16T11:50:00+09:00"
+      }
+    ],
+    "ssm_inventory": [],
+    "ssm_patch_states": [],
+    "ebs_encryption_by_default": {
+      "EbsEncryptionByDefault": false
+    },
+    "ebs_default_kms_key_id": {
+      "KmsKeyId": "alias/aws/ebs"
+    },
+    "instance_credit_specifications": [
+      {
+        "InstanceId": "i-0prod01",
+        "CpuCredits": "unlimited"
+      },
+      {
+        "InstanceId": "i-0prod02",
+        "CpuCredits": "unlimited"
+      },
+      {
+        "InstanceId": "i-0chk01",
+        "CpuCredits": "standard"
+      },
+      {
+        "InstanceId": "i-0chk02",
+        "CpuCredits": "standard"
+      },
+      {
+        "InstanceId": "i-0demo01",
+        "CpuCredits": "standard"
+      },
+      {
+        "InstanceId": "i-0stg01",
+        "CpuCredits": "standard"
+      },
+      {
+        "InstanceId": "i-0stg02",
+        "CpuCredits": "standard"
+      },
+      {
+        "InstanceId": "i-0stg03",
+        "CpuCredits": "standard"
+      }
+    ]
+  },
+  "database": {
+    "db_instances": [
+      {
+        "DBInstanceIdentifier": "production",
+        "DBInstanceClass": "db.m6g.large",
+        "Engine": "mysql",
+        "EngineVersion": "8.0.35",
+        "DBInstanceStatus": "available",
+        "MultiAZ": true,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": "ap-northeast-1c",
+        "BackupRetentionPeriod": 7,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": true,
+        "StorageEncrypted": true,
+        "PubliclyAccessible": false,
+        "DeletionProtection": true,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-prod-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": [
+          "error",
+          "slowquery"
+        ]
+      },
+      {
+        "DBInstanceIdentifier": "check",
+        "DBInstanceClass": "db.t3.small",
+        "Engine": "mysql",
+        "EngineVersion": "8.0.35",
+        "DBInstanceStatus": "available",
+        "MultiAZ": false,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": null,
+        "BackupRetentionPeriod": 0,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": false,
+        "StorageEncrypted": false,
+        "PubliclyAccessible": false,
+        "DeletionProtection": false,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-check-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": []
+      },
+      {
+        "DBInstanceIdentifier": "demo",
+        "DBInstanceClass": "db.t3.small",
+        "Engine": "mysql",
+        "EngineVersion": "8.0.35",
+        "DBInstanceStatus": "available",
+        "MultiAZ": false,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": null,
+        "BackupRetentionPeriod": 1,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": true,
+        "StorageEncrypted": false,
+        "PubliclyAccessible": false,
+        "DeletionProtection": false,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-demo-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": []
+      },
+      {
+        "DBInstanceIdentifier": "staging",
+        "DBInstanceClass": "db.t3.small",
+        "Engine": "mysql",
+        "EngineVersion": "5.7.44",
+        "DBInstanceStatus": "available",
+        "MultiAZ": false,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": null,
+        "BackupRetentionPeriod": 0,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": false,
+        "StorageEncrypted": false,
+        "PubliclyAccessible": false,
+        "DeletionProtection": false,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-stg-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": []
+      },
+      {
+        "DBInstanceIdentifier": "stg2",
+        "DBInstanceClass": "db.t3.small",
+        "Engine": "mysql",
+        "EngineVersion": "5.7.44",
+        "DBInstanceStatus": "available",
+        "MultiAZ": false,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": null,
+        "BackupRetentionPeriod": 0,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": false,
+        "StorageEncrypted": false,
+        "PubliclyAccessible": false,
+        "DeletionProtection": false,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-stg2-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": []
+      },
+      {
+        "DBInstanceIdentifier": "stg3",
+        "DBInstanceClass": "db.t3.micro",
+        "Engine": "mysql",
+        "EngineVersion": "8.0.35",
+        "DBInstanceStatus": "available",
+        "MultiAZ": false,
+        "AvailabilityZone": "ap-northeast-1a",
+        "SecondaryAvailabilityZone": null,
+        "BackupRetentionPeriod": 0,
+        "PreferredBackupWindow": "18:00-18:30",
+        "PreferredMaintenanceWindow": "sun:19:00-sun:19:30",
+        "AutoMinorVersionUpgrade": true,
+        "StorageEncrypted": false,
+        "PubliclyAccessible": false,
+        "DeletionProtection": false,
+        "VpcSecurityGroups": [
+          {
+            "VpcSecurityGroupId": "sg-stg3-rds",
+            "Status": "active"
+          }
+        ],
+        "DBSubnetGroup": {
+          "DBSubnetGroupName": "ex-db-subnet-group",
+          "VpcId": "vpc-52e30834",
+          "Subnets": [
+            {
+              "SubnetIdentifier": "subnet-0a21",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1a"
+              }
+            },
+            {
+              "SubnetIdentifier": "subnet-0a22",
+              "SubnetAvailabilityZone": {
+                "Name": "ap-northeast-1c"
+              }
+            }
+          ]
+        },
+        "DBParameterGroups": [
+          {
+            "DBParameterGroupName": "ex-mysql80",
+            "ParameterApplyStatus": "in-sync"
+          }
+        ],
+        "EnabledCloudwatchLogsExports": []
+      }
+    ],
+    "db_clusters": [],
+    "db_parameter_groups": [
+      {
+        "DBParameterGroupName": "ex-mysql80",
+        "DBParameterGroupFamily": "mysql8.0",
+        "Description": "Example 共通"
+      }
+    ],
+    "db_parameters": {
+      "ex-mysql80": [
+        {
+          "ParameterName": "slow_query_log",
+          "ParameterValue": "1",
+          "Source": "user"
+        },
+        {
+          "ParameterName": "long_query_time",
+          "ParameterValue": "2",
+          "Source": "user"
+        }
+      ]
+    },
+    "db_subnet_groups": [
+      {
+        "DBSubnetGroupName": "ex-db-subnet-group",
+        "VpcId": "vpc-52e30834",
+        "SubnetGroupStatus": "Complete"
+      }
+    ],
+    "db_snapshots": [
+      {
+        "DBSnapshotIdentifier": "rds:production-2026-09-15-18-00",
+        "DBInstanceIdentifier": "production",
+        "SnapshotType": "automated",
+        "SnapshotCreateTime": "2026-09-15T18:00:00+00:00",
+        "Status": "available",
+        "Encrypted": true,
+        "KmsKeyId": "arn:aws:kms:ap-northeast-1:210987654321:key/1f0c9a44-7b2e-4e51-9d3a-6c5b8e2f1a70",
+        "_IsPublic": false
+      },
+      {
+        "DBSnapshotIdentifier": "production-before-migration",
+        "DBInstanceIdentifier": "production",
+        "SnapshotType": "manual",
+        "SnapshotCreateTime": "2025-11-02T10:30:00+00:00",
+        "Status": "available",
+        "Encrypted": true,
+        "KmsKeyId": "arn:aws:kms:ap-northeast-1:210987654321:key/1f0c9a44-7b2e-4e51-9d3a-6c5b8e2f1a70",
+        "_IsPublic": false
+      }
+    ],
+    "db_engine_versions": [
+      {
+        "Engine": "mysql",
+        "EngineVersion": "8.0.35",
+        "Status": "available",
+        "SupportedEngineLifecycleSupport": [
+          "open-source-rds-standard-support"
+        ],
+        "ValidUpgradeTarget": [
+          {
+            "Engine": "mysql",
+            "EngineVersion": "8.0.39",
+            "IsMajorVersionUpgrade": false
+          },
+          {
+            "Engine": "mysql",
+            "EngineVersion": "8.4.3",
+            "IsMajorVersionUpgrade": true
+          }
+        ]
+      },
+      {
+        "Engine": "mysql",
+        "EngineVersion": "5.7.44",
+        "Status": "deprecated",
+        "SupportedEngineLifecycleSupport": [
+          "open-source-rds-extended-support"
+        ],
+        "ValidUpgradeTarget": [
+          {
+            "Engine": "mysql",
+            "EngineVersion": "8.0.35",
+            "IsMajorVersionUpgrade": true
+          }
+        ]
+      }
+    ],
+    "event_subscriptions": []
+  },
+  "storage": {
+    "buckets": [
+      {
+        "Name": "chatdata-production",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": {
+          "Status": "Enabled"
+        },
+        "Lifecycle": [
+          {
+            "ID": "expire-old",
+            "Status": "Enabled",
+            "Expiration": {
+              "Days": 1095
+            },
+            "Filter": {
+              "Prefix": ""
+            }
+          }
+        ],
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "chatdata-develop",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": {
+          "Status": "Enabled"
+        },
+        "Lifecycle": null,
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "chatdata-demo",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": {
+          "Status": "Enabled"
+        },
+        "Lifecycle": null,
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "home.example.com",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "PublicRead",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": "arn:aws:s3:::home.example.com/*"
+            }
+          ]
+        },
+        "PublicAccessBlock": null,
+        "PolicyStatus": {
+          "IsPublic": true
+        },
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": null,
+        "Website": {
+          "IndexDocument": {
+            "Suffix": "index.html"
+          }
+        },
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "partner.example.com",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "PublicRead",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": "arn:aws:s3:::partner.example.com/*"
+            }
+          ]
+        },
+        "PublicAccessBlock": null,
+        "PolicyStatus": {
+          "IsPublic": true
+        },
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": null,
+        "Website": {
+          "IndexDocument": {
+            "Suffix": "index.html"
+          }
+        },
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "log-prod-web-elb",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": [
+          {
+            "ID": "alb-log-90d",
+            "Status": "Enabled",
+            "Expiration": {
+              "Days": 90
+            },
+            "Filter": {
+              "Prefix": ""
+            }
+          }
+        ],
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "log-vpcflow-52e30834",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": null,
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "aws-cloudtrail-logs-210987654321-4f2a9c1b",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": [
+          {
+            "ID": "ct-glacier",
+            "Status": "Enabled",
+            "Transitions": [
+              {
+                "Days": 90,
+                "StorageClass": "GLACIER"
+              }
+            ],
+            "Expiration": {
+              "Days": 2555
+            },
+            "Filter": {
+              "Prefix": ""
+            }
+          }
+        ],
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      },
+      {
+        "Name": "config-bucket-210987654321",
+        "CreationDate": "2021-10-04T05:00:00+00:00",
+        "Region": "ap-northeast-1",
+        "Policy": null,
+        "PublicAccessBlock": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "PolicyStatus": null,
+        "Encryption": {
+          "Rules": [
+            {
+              "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Versioning": null,
+        "Lifecycle": null,
+        "Website": null,
+        "Logging": null,
+        "Acl": {
+          "Owner": {
+            "ID": "ownerid"
+          },
+          "Grants": []
+        },
+        "Tagging": null,
+        "ReplicationStatus": null
+      }
+    ],
+    "efs_file_systems": [
+      {
+        "FileSystemId": "fs-0prod1",
+        "Name": "ex-prod-admin-storage",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 3,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-admin-storage"
+          }
+        ]
+      },
+      {
+        "FileSystemId": "fs-0prod2",
+        "Name": "ex-prod-code-public",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 3,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-code-public"
+          }
+        ]
+      },
+      {
+        "FileSystemId": "fs-0prod3",
+        "Name": "ex-prod-code-framework",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 3,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "elastic",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-code-framework"
+          }
+        ]
+      },
+      {
+        "FileSystemId": "fs-0chk1",
+        "Name": "ex-check-admin-storage",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 2,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-admin-storage"
+          }
+        ]
+      },
+      {
+        "FileSystemId": "fs-0chk2",
+        "Name": "ex-check-code-public",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 2,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-code-public"
+          }
+        ]
+      },
+      {
+        "FileSystemId": "fs-0chk3",
+        "Name": "ex-check-code-framework",
+        "OwnerId": "210987654321",
+        "CreationTime": "2021-11-08T06:00:00+00:00",
+        "LifeCycleState": "available",
+        "NumberOfMountTargets": 2,
+        "SizeInBytes": {
+          "Value": 12884901888,
+          "ValueInIA": 0,
+          "ValueInStandard": 12884901888
+        },
+        "PerformanceMode": "generalPurpose",
+        "ThroughputMode": "bursting",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-code-framework"
+          }
+        ]
+      }
+    ],
+    "efs_mount_targets": [
+      {
+        "MountTargetId": "fsmt-prod1a",
+        "FileSystemId": "fs-0prod1",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod1a"
+      },
+      {
+        "MountTargetId": "fsmt-prod1c",
+        "FileSystemId": "fs-0prod1",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod1c"
+      },
+      {
+        "MountTargetId": "fsmt-prod1d",
+        "FileSystemId": "fs-0prod1",
+        "SubnetId": "subnet-0a23",
+        "AvailabilityZoneName": "ap-northeast-1d",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod1d"
+      },
+      {
+        "MountTargetId": "fsmt-prod2a",
+        "FileSystemId": "fs-0prod2",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod2a"
+      },
+      {
+        "MountTargetId": "fsmt-prod2c",
+        "FileSystemId": "fs-0prod2",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod2c"
+      },
+      {
+        "MountTargetId": "fsmt-prod2d",
+        "FileSystemId": "fs-0prod2",
+        "SubnetId": "subnet-0a23",
+        "AvailabilityZoneName": "ap-northeast-1d",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod2d"
+      },
+      {
+        "MountTargetId": "fsmt-prod3a",
+        "FileSystemId": "fs-0prod3",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod3a"
+      },
+      {
+        "MountTargetId": "fsmt-prod3c",
+        "FileSystemId": "fs-0prod3",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod3c"
+      },
+      {
+        "MountTargetId": "fsmt-prod3d",
+        "FileSystemId": "fs-0prod3",
+        "SubnetId": "subnet-0a23",
+        "AvailabilityZoneName": "ap-northeast-1d",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efsrod3d"
+      },
+      {
+        "MountTargetId": "fsmt-0chk1a",
+        "FileSystemId": "fs-0chk1",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk1a"
+      },
+      {
+        "MountTargetId": "fsmt-0chk1c",
+        "FileSystemId": "fs-0chk1",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk1c"
+      },
+      {
+        "MountTargetId": "fsmt-0chk2a",
+        "FileSystemId": "fs-0chk2",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk2a"
+      },
+      {
+        "MountTargetId": "fsmt-0chk2c",
+        "FileSystemId": "fs-0chk2",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk2c"
+      },
+      {
+        "MountTargetId": "fsmt-0chk3a",
+        "FileSystemId": "fs-0chk3",
+        "SubnetId": "subnet-0a21",
+        "AvailabilityZoneName": "ap-northeast-1a",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk3a"
+      },
+      {
+        "MountTargetId": "fsmt-0chk3c",
+        "FileSystemId": "fs-0chk3",
+        "SubnetId": "subnet-0a22",
+        "AvailabilityZoneName": "ap-northeast-1c",
+        "LifeCycleState": "available",
+        "IpAddress": "172.31.52.200",
+        "NetworkInterfaceId": "eni-efschk3c"
+      }
+    ],
+    "efs_access_points": [
+      {
+        "AccessPointId": "fsap-prod1",
+        "FileSystemId": "fs-0prod1",
+        "Name": "ex-prod-admin-storage",
+        "RootDirectory": {
+          "Path": "/admin/storage/framework",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-admin-storage"
+          }
+        ]
+      },
+      {
+        "AccessPointId": "fsap-prod2",
+        "FileSystemId": "fs-0prod2",
+        "Name": "ex-prod-code-public",
+        "RootDirectory": {
+          "Path": "/code/storage/app/public",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-code-public"
+          }
+        ]
+      },
+      {
+        "AccessPointId": "fsap-prod3",
+        "FileSystemId": "fs-0prod3",
+        "Name": "ex-prod-code-framework",
+        "RootDirectory": {
+          "Path": "/code/storage/framework",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-prod-code-framework"
+          }
+        ]
+      },
+      {
+        "AccessPointId": "fsap-0chk1",
+        "FileSystemId": "fs-0chk1",
+        "Name": "ex-check-admin-storage",
+        "RootDirectory": {
+          "Path": "/check-admin/storage/framework",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-admin-storage"
+          }
+        ]
+      },
+      {
+        "AccessPointId": "fsap-0chk2",
+        "FileSystemId": "fs-0chk2",
+        "Name": "ex-check-code-public",
+        "RootDirectory": {
+          "Path": "/check-code/storage/app/public",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-code-public"
+          }
+        ]
+      },
+      {
+        "AccessPointId": "fsap-0chk3",
+        "FileSystemId": "fs-0chk3",
+        "Name": "ex-check-code-framework",
+        "RootDirectory": {
+          "Path": "/check-code/storage/framework",
+          "CreationInfo": {
+            "OwnerUid": 1000,
+            "OwnerGid": 1000
+          }
+        },
+        "LifeCycleState": "available",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ex-check-code-framework"
+          }
+        ]
+      }
+    ],
+    "efs_policies": {
+      "fs-0prod1": null,
+      "fs-0prod2": null,
+      "fs-0prod3": null,
+      "fs-0chk1": null,
+      "fs-0chk2": null,
+      "fs-0chk3": null
+    },
+    "efs_backup_policies": {
+      "fs-0prod1": {
+        "Status": "ENABLED"
+      },
+      "fs-0prod2": {
+        "Status": "ENABLED"
+      },
+      "fs-0prod3": {
+        "Status": "ENABLED"
+      },
+      "fs-0chk1": {
+        "Status": "DISABLED"
+      },
+      "fs-0chk2": {
+        "Status": "DISABLED"
+      },
+      "fs-0chk3": {
+        "Status": "DISABLED"
+      }
+    },
+    "fsx_file_systems": [],
+    "backup_plans": [],
+    "backup_selections": [],
+    "backup_vaults": [],
+    "backup_protected_resources": []
+  },
+  "edge": {
+    "load_balancers": [
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/prod-web-elb/0123456789abcdef",
+        "LoadBalancerName": "prod-web-elb",
+        "DNSName": "prod-web-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "true"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": "log-prod-web-elb"
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "true"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-check-elb/1123456789abcdef",
+        "LoadBalancerName": "ex-check-elb",
+        "DNSName": "ex-check-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": ""
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-demo-elb/2123456789abcdef",
+        "LoadBalancerName": "ex-demo-elb",
+        "DNSName": "ex-demo-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": ""
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg-elb/3123456789abcdef",
+        "LoadBalancerName": "ex-stg-elb",
+        "DNSName": "ex-stg-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": ""
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg2-elb/4123456789abcdef",
+        "LoadBalancerName": "ex-stg2-elb",
+        "DNSName": "ex-stg2-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": ""
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg3-elb/5123456789abcdef",
+        "LoadBalancerName": "ex-stg3-elb",
+        "DNSName": "ex-stg3-elb-1234567890.ap-northeast-1.elb.amazonaws.com",
+        "Scheme": "internet-facing",
+        "VpcId": "vpc-52e30834",
+        "Type": "application",
+        "State": {
+          "Code": "active"
+        },
+        "AvailabilityZones": [
+          {
+            "ZoneName": "ap-northeast-1a",
+            "SubnetId": "subnet-0a11"
+          },
+          {
+            "ZoneName": "ap-northeast-1c",
+            "SubnetId": "subnet-0a12"
+          }
+        ],
+        "SecurityGroups": [
+          "sg-prod-elb"
+        ],
+        "Attributes": [
+          {
+            "Key": "access_logs.s3.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "access_logs.s3.bucket",
+            "Value": ""
+          },
+          {
+            "Key": "access_logs.s3.prefix",
+            "Value": ""
+          },
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "60"
+          }
+        ]
+      }
+    ],
+    "target_groups": [
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/prod-web-tg/0123456789abcdef",
+        "TargetGroupName": "prod-web-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/prod-web-elb/0123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0prod01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          },
+          {
+            "Target": {
+              "Id": "i-0prod02",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "true"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      },
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-check-tg/1123456789abcdef",
+        "TargetGroupName": "ex-check-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-check-elb/1123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0stg01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      },
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-demo-tg/2123456789abcdef",
+        "TargetGroupName": "ex-demo-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-demo-elb/2123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0stg01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      },
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg-tg/3123456789abcdef",
+        "TargetGroupName": "ex-stg-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg-elb/3123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0stg01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      },
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg2-tg/4123456789abcdef",
+        "TargetGroupName": "ex-stg2-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg2-elb/4123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0stg01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      },
+      {
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg3-tg/5123456789abcdef",
+        "TargetGroupName": "ex-stg3-tg",
+        "Protocol": "HTTP",
+        "Port": 80,
+        "VpcId": "vpc-52e30834",
+        "TargetType": "instance",
+        "LoadBalancerArns": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg3-elb/5123456789abcdef"
+        ],
+        "Targets": [
+          {
+            "Target": {
+              "Id": "i-0stg01",
+              "Port": 80
+            },
+            "TargetHealth": {
+              "State": "healthy"
+            }
+          }
+        ],
+        "Attributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          },
+          {
+            "Key": "stickiness.type",
+            "Value": "lb_cookie"
+          },
+          {
+            "Key": "stickiness.lb_cookie.duration_seconds",
+            "Value": "86400"
+          },
+          {
+            "Key": "deregistration_delay.timeout_seconds",
+            "Value": "300"
+          }
+        ]
+      }
+    ],
+    "listeners": [
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/prod-web-elb/0123456789abcdef/aaaa01234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/prod-web-elb/0123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/prod-web-tg/0123456789abcdef"
+          }
+        ]
+      },
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/ex-check-elb/1123456789abcdef/aaaa11234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-check-elb/1123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-check-tg/1123456789abcdef"
+          }
+        ]
+      },
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/ex-demo-elb/2123456789abcdef/aaaa21234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-demo-elb/2123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-demo-tg/2123456789abcdef"
+          }
+        ]
+      },
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/ex-stg-elb/3123456789abcdef/aaaa31234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg-elb/3123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg-tg/3123456789abcdef"
+          }
+        ]
+      },
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/ex-stg2-elb/4123456789abcdef/aaaa41234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg2-elb/4123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg2-tg/4123456789abcdef"
+          }
+        ]
+      },
+      {
+        "ListenerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:listener/app/ex-stg3-elb/5123456789abcdef/aaaa51234567",
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg3-elb/5123456789abcdef",
+        "Port": 443,
+        "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+            "IsDefault": true
+          }
+        ],
+        "DefaultActions": [
+          {
+            "Type": "forward",
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:targetgroup/ex-stg3-tg/5123456789abcdef"
+          }
+        ]
+      }
+    ],
+    "listener_rules": [],
+    "classic_load_balancers": [],
+    "acm_certificates": [
+      {
+        "CertificateArn": "arn:aws:acm:ap-northeast-1:210987654321:certificate/1111-wild-example",
+        "DomainName": "*.example.com",
+        "SubjectAlternativeNames": [
+          "*.example.com",
+          "example.com"
+        ],
+        "Status": "ISSUED",
+        "Type": "AMAZON_ISSUED",
+        "NotAfter": "2027-02-11T23:59:59+09:00",
+        "InUseBy": [
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/prod-web-elb/0123456789abcdef",
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-check-elb/1123456789abcdef",
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-demo-elb/2123456789abcdef",
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg-elb/3123456789abcdef",
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg2-elb/4123456789abcdef",
+          "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/ex-stg3-elb/5123456789abcdef"
+        ],
+        "RenewalEligibility": "ELIGIBLE",
+        "_Region": "ap-northeast-1"
+      },
+      {
+        "CertificateArn": "arn:aws:acm:us-east-1:210987654321:certificate/2222-home-cf",
+        "DomainName": "home.example.com",
+        "SubjectAlternativeNames": [
+          "home.example.com"
+        ],
+        "Status": "ISSUED",
+        "Type": "AMAZON_ISSUED",
+        "NotAfter": "2026-10-20T23:59:59+09:00",
+        "InUseBy": [
+          "arn:aws:cloudfront::210987654321:distribution/E1NNDWC0J4VIR1"
+        ],
+        "RenewalEligibility": "ELIGIBLE",
+        "_Region": "us-east-1"
+      },
+      {
+        "CertificateArn": "arn:aws:acm:us-east-1:210987654321:certificate/3333-partner-cf",
+        "DomainName": "partner.example.com",
+        "SubjectAlternativeNames": [
+          "partner.example.com"
+        ],
+        "Status": "ISSUED",
+        "Type": "AMAZON_ISSUED",
+        "NotAfter": "2027-05-30T23:59:59+09:00",
+        "InUseBy": [],
+        "RenewalEligibility": "ELIGIBLE",
+        "_Region": "us-east-1"
+      }
+    ],
+    "cloudfront_distributions": [
+      {
+        "Id": "E1NNDWC0J4VIR1",
+        "ARN": "arn:aws:cloudfront::210987654321:distribution/E1NNDWC0J4VIR1",
+        "DomainName": "d222222bcdef9.cloudfront.net",
+        "Status": "Deployed",
+        "Enabled": true,
+        "WebACLId": "",
+        "Aliases": {
+          "Quantity": 1,
+          "Items": [
+            "home.example.com"
+          ]
+        },
+        "Origins": {
+          "Quantity": 1,
+          "Items": [
+            {
+              "Id": "S3-home",
+              "DomainName": "home.example.com.s3.amazonaws.com",
+              "OriginPath": ""
+            }
+          ]
+        },
+        "DistributionConfig": {
+          "Comment": "home 静的サイト"
+        },
+        "Logging": {
+          "Enabled": false,
+          "Bucket": "",
+          "Prefix": ""
+        },
+        "DefaultCacheBehavior": {
+          "TargetOriginId": "S3-home",
+          "ViewerProtocolPolicy": "redirect-to-https",
+          "Compress": true,
+          "AllowedMethods": {
+            "Quantity": 2,
+            "Items": [
+              "GET",
+              "HEAD"
+            ]
+          }
+        },
+        "ViewerCertificate": {
+          "CloudFrontDefaultCertificate": false,
+          "ACMCertificateArn": "arn:aws:acm:us-east-1:210987654321:certificate/3a9d1c47-58bf-4d02-9e6a-77c1b4e20f38",
+          "SSLSupportMethod": "sni-only",
+          "MinimumProtocolVersion": "TLSv1.2_2021"
+        }
+      },
+      {
+        "Id": "EBC9MNXZ7WSZN",
+        "ARN": "arn:aws:cloudfront::210987654321:distribution/EBC9MNXZ7WSZN",
+        "DomainName": "d111111abcdef8.cloudfront.net",
+        "Status": "Deployed",
+        "Enabled": true,
+        "WebACLId": "",
+        "Aliases": {
+          "Quantity": 1,
+          "Items": [
+            "partner.example.com"
+          ]
+        },
+        "Origins": {
+          "Quantity": 1,
+          "Items": [
+            {
+              "Id": "S3-partner",
+              "DomainName": "partner.example.com.s3.amazonaws.com",
+              "OriginPath": ""
+            }
+          ]
+        },
+        "DistributionConfig": {
+          "Comment": "partner 静的サイト"
+        },
+        "Logging": {
+          "Enabled": false,
+          "Bucket": "",
+          "Prefix": ""
+        },
+        "DefaultCacheBehavior": {
+          "TargetOriginId": "S3-partner",
+          "ViewerProtocolPolicy": "allow-all",
+          "Compress": true,
+          "AllowedMethods": {
+            "Quantity": 2,
+            "Items": [
+              "GET",
+              "HEAD"
+            ]
+          }
+        },
+        "ViewerCertificate": {
+          "CloudFrontDefaultCertificate": false,
+          "ACMCertificateArn": "arn:aws:acm:us-east-1:210987654321:certificate/3a9d1c47-58bf-4d02-9e6a-77c1b4e20f38",
+          "SSLSupportMethod": "sni-only",
+          "MinimumProtocolVersion": "TLSv1"
+        }
+      }
+    ],
+    "global_accelerators": [
+      {
+        "AcceleratorArn": "arn:aws:globalaccelerator::210987654321:accelerator/8f3a2b1c",
+        "Name": "ex-prod-accelerator",
+        "Enabled": true,
+        "Status": "DEPLOYED",
+        "IpAddressType": "IPV4",
+        "IpSets": [
+          {
+            "IpFamily": "IPv4",
+            "IpAddresses": [
+              "198.51.100.201",
+              "198.51.100.202"
+            ]
+          }
+        ],
+        "DnsName": "a1234567890abcdef.awsglobalaccelerator.com",
+        "Listeners": [
+          {
+            "ListenerArn": "arn:aws:globalaccelerator::210987654321:accelerator/8f3a2b1c/listener/aa11",
+            "Protocol": "TCP",
+            "PortRanges": [
+              {
+                "FromPort": 443,
+                "ToPort": 443
+              }
+            ],
+            "ClientAffinity": "NONE",
+            "EndpointGroups": [
+              {
+                "EndpointGroupArn": "arn:aws:globalaccelerator::210987654321:accelerator/8f3a2b1c/listener/aa11/endpoint-group/bb22",
+                "EndpointGroupRegion": "ap-northeast-1",
+                "TrafficDialPercentage": 100.0,
+                "EndpointDescriptions": [
+                  {
+                    "EndpointId": "arn:aws:elasticloadbalancing:ap-northeast-1:210987654321:loadbalancer/app/prod-web-elb/0123456789abcdef",
+                    "Weight": 128,
+                    "HealthState": "HEALTHY",
+                    "ClientIPPreservationEnabled": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "route53_hosted_zones": [
+      {
+        "Id": "/hostedzone/Z0ABCDEF1234567890",
+        "Name": "portal.example.net.",
+        "Config": {
+          "PrivateZone": false,
+          "Comment": "CP 本番ゾーン"
+        },
+        "ResourceRecordSetCount": 24
+      }
+    ],
+    "route53_record_sets": {
+      "Z0ABCDEF1234567890": [
+        {
+          "Name": "portal.example.net.",
+          "Type": "NS",
+          "ResourceRecords": [
+            {
+              "Value": "ns-1.awsdns-01.com."
+            }
+          ],
+          "TTL": 172800
+        },
+        {
+          "Name": "portal.example.net.",
+          "Type": "A",
+          "AliasTarget": {
+            "DNSName": "cp-prod-elb-9876543210.ap-northeast-1.elb.amazonaws.com.",
+            "HostedZoneId": "Z14GRHDCWA56QT",
+            "EvaluateTargetHealth": false
+          }
+        },
+        {
+          "Name": "api.portal.example.net.",
+          "Type": "A",
+          "AliasTarget": {
+            "DNSName": "cp-api-elb-1234509876.ap-northeast-1.elb.amazonaws.com.",
+            "HostedZoneId": "Z14GRHDCWA56QT",
+            "EvaluateTargetHealth": false
+          }
+        }
+      ]
+    },
+    "wafv2_web_acls": [],
+    "shield_subscription": null
+  },
+  "serverless": {
+    "lambda_functions": [
+      {
+        "FunctionName": "ex-rds-auto-stop",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-rds-auto-stop",
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "LastModified": "2026-04-02T02:11:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-rds-auto-stop-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-rds-auto-start",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-rds-auto-start",
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "LastModified": "2026-04-02T02:11:30.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-rds-auto-start-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-chat-export",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-chat-export",
+        "Runtime": "go1.x",
+        "Handler": "main",
+        "LastModified": "2023-02-14T07:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-chat-export-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-ses-bounce-handler",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-ses-bounce-handler",
+        "Runtime": "python3.7",
+        "Handler": "handler.main",
+        "LastModified": "2021-06-30T04:20:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-ses-bounce-handler-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-s3-thumbnail",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-s3-thumbnail",
+        "Runtime": "nodejs18.x",
+        "Handler": "index.handler",
+        "LastModified": "2024-09-05T10:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-s3-thumbnail-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "s3invoke",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "s3.amazonaws.com"
+              },
+              "Action": "lambda:InvokeFunction"
+            }
+          ]
+        },
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-config-notify",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-config-notify",
+        "Runtime": "python3.11",
+        "Handler": "index.lambda_handler",
+        "LastModified": "2025-08-21T01:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-config-notify-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [
+          {
+            "UUID": "es-0001",
+            "EventSourceArn": "arn:aws:sqs:ap-northeast-1:210987654321:IncidentSQS.fifo",
+            "State": "Enabled",
+            "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-config-notify"
+          }
+        ],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-healthcheck",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-healthcheck",
+        "Runtime": "nodejs20.x",
+        "Handler": "index.handler",
+        "LastModified": "2026-01-10T00:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-healthcheck-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-log-archive",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-log-archive",
+        "Runtime": "python3.11",
+        "Handler": "archive.main",
+        "LastModified": "2025-12-01T03:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-log-archive-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "DLTLambdaTaskRunner",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:DLTLambdaTaskRunner",
+        "Runtime": "nodejs16.x",
+        "Handler": "index.handler",
+        "LastModified": "2022-08-18T05:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-DLTLambdaTaskRunner-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      },
+      {
+        "FunctionName": "ex-cf-invalidate",
+        "FunctionArn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-cf-invalidate",
+        "Runtime": "python3.11",
+        "Handler": "index.handler",
+        "LastModified": "2025-03-03T06:00:00.000+0000",
+        "MemorySize": 256,
+        "Timeout": 60,
+        "Role": "arn:aws:iam::210987654321:role/lambda-ex-cf-invalidate-role",
+        "Environment": {
+          "_keys": [
+            "DB_HOST",
+            "DB_NAME",
+            "S3_BUCKET"
+          ]
+        },
+        "EventSourceMappings": [],
+        "Policy": null,
+        "UrlConfig": null,
+        "Tags": null
+      }
+    ],
+    "eventbridge_rules": [
+      {
+        "Name": "RdsAutoStopNotify",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:rule/RdsAutoStopNotify",
+        "EventBusName": "default",
+        "ScheduleExpression": "cron(0 13 ? * MON-FRI *)",
+        "State": "ENABLED",
+        "Description": "非本番RDSを 22:00(JST) に停止し SNS へ通知する",
+        "Targets": [
+          {
+            "Id": "lambda",
+            "Arn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-rds-auto-stop",
+            "Input": "{\"targets\":[\"check\",\"demo\",\"staging\",\"stg2\",\"stg3\"]}"
+          },
+          {
+            "Id": "sns",
+            "Arn": "arn:aws:sns:ap-northeast-1:210987654321:config-topic"
+          }
+        ]
+      },
+      {
+        "Name": "RdsAutoStartMorning",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:rule/RdsAutoStartMorning",
+        "EventBusName": "default",
+        "ScheduleExpression": "cron(0 23 ? * SUN-THU *)",
+        "State": "ENABLED",
+        "Description": "非本番RDSを 08:00(JST) に起動する",
+        "Targets": [
+          {
+            "Id": "lambda",
+            "Arn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-rds-auto-start"
+          }
+        ]
+      },
+      {
+        "Name": "ex-chat-export-daily",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:rule/ex-chat-export-daily",
+        "EventBusName": "default",
+        "ScheduleExpression": "cron(30 18 * * ? *)",
+        "State": "ENABLED",
+        "Description": "チャットデータの日次エクスポート",
+        "Targets": [
+          {
+            "Id": "lambda",
+            "Arn": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-chat-export"
+          }
+        ]
+      },
+      {
+        "Name": "ex-config-compliance-change",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:rule/ex-config-compliance-change",
+        "EventBusName": "default",
+        "EventPattern": "{\"source\":[\"aws.config\"],\"detail-type\":[\"Config Rules Compliance Change\"]}",
+        "State": "ENABLED",
+        "Description": "Config ルール違反を通知",
+        "Targets": [
+          {
+            "Id": "sns",
+            "Arn": "arn:aws:sns:ap-northeast-1:210987654321:config-topic"
+          }
+        ]
+      },
+      {
+        "Name": "ex-old-loadtest-trigger",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:rule/ex-old-loadtest-trigger",
+        "EventBusName": "default",
+        "ScheduleExpression": "rate(1 day)",
+        "State": "DISABLED",
+        "Description": "負荷試験の定期実行（停止中）",
+        "Targets": []
+      }
+    ],
+    "eventbridge_buses": [
+      {
+        "Name": "default",
+        "Arn": "arn:aws:events:ap-northeast-1:210987654321:event-bus/default"
+      }
+    ],
+    "stepfunctions_state_machines": [
+      {
+        "stateMachineArn": "arn:aws:states:ap-northeast-1:210987654321:stateMachine:DLTStepFunctionTaskRunner-ABC123",
+        "name": "DLTStepFunctionTaskRunner-ABC123",
+        "type": "STANDARD",
+        "creationDate": "2022-08-18T05:00:00+00:00",
+        "status": "ACTIVE",
+        "roleArn": "arn:aws:iam::210987654321:role/DLTStepFunctionRole",
+        "_definition_length": 8421,
+        "_definition_head": "{\"StartAt\":\"Run Task\",\"States\":{"
+      }
+    ],
+    "dynamodb_tables": [
+      {
+        "TableName": "ex-load-test-DLTTestRunnerStorageDLTScenariosTable-X1",
+        "TableStatus": "ACTIVE",
+        "ItemCount": 3,
+        "TableSizeBytes": 4096,
+        "CreationDateTime": "2022-08-18T05:00:00+00:00",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST"
+        }
+      },
+      {
+        "TableName": "ex-load-test-DLTTestRunnerStorageDLTHistoryTable-Y2",
+        "TableStatus": "ACTIVE",
+        "ItemCount": 41,
+        "TableSizeBytes": 20480,
+        "CreationDateTime": "2022-08-18T05:00:00+00:00",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST"
+        }
+      }
+    ],
+    "sqs_queues": [
+      {
+        "QueueUrl": "https://sqs.ap-northeast-1.amazonaws.com/210987654321/IncidentSQS-9f2a.fifo",
+        "Attributes": {
+          "FifoQueue": "true",
+          "ContentBasedDeduplication": "true",
+          "ApproximateNumberOfMessages": "0"
+        }
+      }
+    ],
+    "sns_topics": [
+      {
+        "TopicArn": "arn:aws:sns:ap-northeast-1:210987654321:config-topic",
+        "Attributes": {
+          "DisplayName": "config-topic",
+          "SubscriptionsConfirmed": "2"
+        },
+        "Subscriptions": [
+          {
+            "SubscriptionArn": "arn:sub1",
+            "Protocol": "email",
+            "Endpoint": "ops@example.invalid"
+          },
+          {
+            "SubscriptionArn": "arn:sub2",
+            "Protocol": "lambda",
+            "Endpoint": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-config-notify"
+          }
+        ]
+      },
+      {
+        "TopicArn": "arn:aws:sns:ap-northeast-1:210987654321:CodeStarNotifications-test-codebuild-7e1f",
+        "Attributes": {
+          "DisplayName": "",
+          "SubscriptionsConfirmed": "0"
+        },
+        "Subscriptions": []
+      },
+      {
+        "TopicArn": "arn:aws:sns:ap-northeast-1:210987654321:ex-alarm-topic",
+        "Attributes": {
+          "DisplayName": "ex-alarm-topic",
+          "SubscriptionsConfirmed": "1"
+        },
+        "Subscriptions": [
+          {
+            "SubscriptionArn": "arn:sub3",
+            "Protocol": "email",
+            "Endpoint": "noc@example.invalid"
+          }
+        ]
+      }
+    ],
+    "cognito_user_pools": [
+      {
+        "Id": "ap-northeast-1_LoadTest1",
+        "Name": "ex-load-test-user-pool",
+        "CreationDate": "2022-08-18T05:00:00+00:00",
+        "LastModifiedDate": "2022-08-18T05:00:00+00:00",
+        "EstimatedNumberOfUsers": 0,
+        "MfaConfiguration": "OFF"
+      }
+    ],
+    "apigateway_rest_apis": [],
+    "apigatewayv2_apis": []
+  },
+  "logging": {
+    "cloudtrail_trails": [
+      {
+        "Name": "management-events",
+        "TrailARN": "arn:aws:cloudtrail:ap-northeast-1:210987654321:trail/management-events",
+        "S3BucketName": "aws-cloudtrail-logs-210987654321-4f2a9c1b",
+        "IsMultiRegionTrail": true,
+        "LogFileValidationEnabled": true,
+        "HomeRegion": "ap-northeast-1",
+        "IsLogging": true,
+        "Status": {
+          "IsLogging": true,
+          "LatestDeliveryTime": "2026-09-16T11:55:00+09:00",
+          "StartLoggingTime": "2021-10-04T06:00:00+09:00"
+        },
+        "EventSelectors": [
+          {
+            "ReadWriteType": "All",
+            "IncludeManagementEvents": true,
+            "DataResources": []
+          }
+        ],
+        "AdvancedEventSelectors": []
+      }
+    ],
+    "config_recorders": [
+      {
+        "name": "default",
+        "roleARN": "arn:aws:iam::210987654321:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig",
+        "recordingGroup": {
+          "allSupported": true,
+          "includeGlobalResourceTypes": true
+        },
+        "Status": {
+          "name": "default",
+          "lastStartTime": "2021-10-04T06:10:00+09:00",
+          "recording": true,
+          "lastStatus": "SUCCESS",
+          "lastStatusChangeTime": "2026-09-16T11:40:00+09:00"
+        }
+      }
+    ],
+    "config_delivery_channels": [
+      {
+        "name": "default",
+        "s3BucketName": "config-bucket-210987654321",
+        "snsTopicARN": "arn:aws:sns:ap-northeast-1:210987654321:config-topic"
+      }
+    ],
+    "config_rules": [
+      {
+        "ConfigRuleName": "s3-bucket-public-read-prohibited",
+        "ConfigRuleState": "ACTIVE"
+      }
+    ],
+    "flow_logs": [
+      {
+        "FlowLogId": "fl-0abc123",
+        "ResourceId": "vpc-52e30834",
+        "FlowLogStatus": "ACTIVE",
+        "TrafficType": "ALL",
+        "LogDestinationType": "s3",
+        "LogDestination": "arn:aws:s3:::log-vpcflow-52e30834",
+        "DeliverLogsStatus": "SUCCESS",
+        "CreationTime": "2022-01-20T02:00:00+00:00"
+      }
+    ],
+    "cloudwatch_log_groups": [
+      {
+        "logGroupName": "/aws/rds/instance/production/error",
+        "retentionInDays": 30
+      },
+      {
+        "logGroupName": "/aws/lambda/ex-chat-export"
+      },
+      {
+        "logGroupName": "/dn/prod/nginx",
+        "retentionInDays": 90
+      }
+    ],
+    "cloudwatch_alarms": [
+      {
+        "AlarmName": "ex-prod-ec2-01-cpu",
+        "_AlarmType": "MetricAlarm",
+        "MetricName": "CPUUtilization",
+        "Namespace": "AWS/EC2",
+        "StateValue": "OK",
+        "AlarmActions": [
+          "arn:aws:sns:ap-northeast-1:210987654321:ex-alarm-topic"
+        ]
+      },
+      {
+        "AlarmName": "ex-prod-rds-cpu",
+        "_AlarmType": "MetricAlarm",
+        "MetricName": "CPUUtilization",
+        "Namespace": "AWS/RDS",
+        "StateValue": "OK",
+        "AlarmActions": [
+          "arn:aws:sns:ap-northeast-1:210987654321:ex-alarm-topic"
+        ]
+      }
+    ],
+    "cloudwatch_dashboards": []
+  },
+  "security": {
+    "guardduty_detectors": [
+      {
+        "DetectorId": "det-0aa",
+        "Status": "ENABLED",
+        "FindingPublishingFrequency": "SIX_HOURS",
+        "Members": []
+      }
+    ],
+    "securityhub": {
+      "Hub": {
+        "HubArn": "arn:aws:securityhub:ap-northeast-1:210987654321:hub/default",
+        "SubscribedAt": "2022-03-01T00:00:00.000Z"
+      },
+      "EnabledStandards": [
+        {
+          "StandardsSubscriptionArn": "arn:sub",
+          "StandardsStatus": "READY",
+          "StandardsArn": "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+        }
+      ]
+    },
+    "inspector2": {},
+    "access_analyzer": [],
+    "iam": {
+      "users": [
+        {
+          "UserName": "deploy-ci",
+          "UserId": "AIDADEPLOY",
+          "Arn": "arn:aws:iam::210987654321:user/deploy-ci",
+          "Path": "/",
+          "CreateDate": "2021-11-15T00:00:00+00:00",
+          "PasswordLastUsed": null,
+          "Tags": []
+        },
+        {
+          "UserName": "vendor-b-ops",
+          "UserId": "AIDAVENDORB",
+          "Arn": "arn:aws:iam::210987654321:user/vendor-b-ops",
+          "Path": "/",
+          "CreateDate": "2021-10-20T00:00:00+00:00",
+          "PasswordLastUsed": "2026-09-12T09:30:00+00:00",
+          "Tags": []
+        }
+      ],
+      "roles": [
+        {
+          "RoleName": "ex-ec2-role",
+          "Arn": "arn:aws:iam::210987654321:role/ex-ec2-role",
+          "CreateDate": "2021-10-04T05:30:00+00:00",
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": "ec2.amazonaws.com"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          }
+        },
+        {
+          "RoleName": "StackSetVendorMonitorExecutionRole",
+          "Arn": "arn:aws:iam::210987654321:role/StackSetVendorMonitorExecutionRole",
+          "CreateDate": "2022-02-01T00:00:00+00:00",
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::999888777666:root"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          }
+        },
+        {
+          "RoleName": "VendorAMonitoringReadOnly",
+          "Arn": "arn:aws:iam::210987654321:role/VendorAMonitoringReadOnly",
+          "CreateDate": "2022-02-01T00:00:00+00:00",
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::999888777666:role/VendorMonitorAdmin"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "ex-vendormonitor"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "RoleName": "DLTStepFunctionRole",
+          "Arn": "arn:aws:iam::210987654321:role/DLTStepFunctionRole",
+          "CreateDate": "2022-08-18T05:00:00+00:00",
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": "states.amazonaws.com"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          }
+        }
+      ],
+      "policies_attached_summary": [
+        {
+          "PrincipalType": "role",
+          "Name": "ex-ec2-role",
+          "AttachedPolicies": [
+            {
+              "PolicyName": "AmazonSSMManagedInstanceCore",
+              "PolicyArn": "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+            }
+          ]
+        },
+        {
+          "PrincipalType": "role",
+          "Name": "StackSetVendorMonitorExecutionRole",
+          "AttachedPolicies": [
+            {
+              "PolicyName": "AdministratorAccess",
+              "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+            }
+          ]
+        },
+        {
+          "PrincipalType": "role",
+          "Name": "VendorAMonitoringReadOnly",
+          "AttachedPolicies": [
+            {
+              "PolicyName": "ReadOnlyAccess",
+              "PolicyArn": "arn:aws:iam::aws:policy/ReadOnlyAccess"
+            }
+          ]
+        },
+        {
+          "PrincipalType": "user",
+          "Name": "deploy-ci",
+          "AttachedPolicies": [
+            {
+              "PolicyName": "AmazonS3FullAccess",
+              "PolicyArn": "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+            }
+          ]
+        },
+        {
+          "PrincipalType": "user",
+          "Name": "vendor-b-ops",
+          "AttachedPolicies": [
+            {
+              "PolicyName": "PowerUserAccess",
+              "PolicyArn": "arn:aws:iam::aws:policy/PowerUserAccess"
+            }
+          ]
+        }
+      ],
+      "account_summary": {
+        "Users": 2,
+        "Roles": 4,
+        "MFADevices": 1,
+        "MFADevicesInUse": 1,
+        "AccountMFAEnabled": 0,
+        "AccountAccessKeysPresent": 1,
+        "GroupsQuota": 300,
+        "Policies": 0,
+        "AccountSigningCertificatesPresent": 0
+      },
+      "password_policy": {
+        "MinimumPasswordLength": 12,
+        "RequireSymbols": true
+      },
+      "credential_report_meta": null,
+      "account_aliases": [
+        "example"
+      ],
+      "mfa_devices": {
+        "UserDevices": {
+          "deploy-ci": [],
+          "vendor-b-ops": [
+            {
+              "UserName": "vendor-b-ops",
+              "SerialNumber": "arn:aws:iam::210987654321:mfa/vendor-b-ops",
+              "EnableDate": "2022-02-14T01:05:00+00:00"
+            }
+          ]
+        },
+        "VirtualDevices": [
+          {
+            "SerialNumber": "arn:aws:iam::210987654321:mfa/vendor-b-ops",
+            "User": {
+              "UserName": "vendor-b-ops",
+              "Arn": "arn:aws:iam::210987654321:user/vendor-b-ops"
+            },
+            "EnableDate": "2022-02-14T01:05:00+00:00"
+          },
+          {
+            "SerialNumber": "arn:aws:iam::210987654321:mfa/former-admin",
+            "User": {}
+          }
+        ]
+      },
+      "access_keys": [
+        {
+          "UserName": "deploy-ci",
+          "AccessKeyId": "****K7QD",
+          "Status": "Active",
+          "CreateDate": "2021-11-15T02:10:00+00:00",
+          "LastUsedDate": "2026-09-14T18:42:00+00:00",
+          "ServiceName": "s3",
+          "Region": "ap-northeast-1"
+        },
+        {
+          "UserName": "vendor-b-ops",
+          "AccessKeyId": "****M3XZ",
+          "Status": "Active",
+          "CreateDate": "2021-10-20T04:00:00+00:00",
+          "LastUsedDate": null,
+          "ServiceName": null,
+          "Region": null
+        },
+        {
+          "UserName": "vendor-b-ops",
+          "AccessKeyId": "****P9AA",
+          "Status": "Inactive",
+          "CreateDate": "2020-05-08T09:15:00+00:00",
+          "LastUsedDate": "2021-10-19T23:58:00+00:00",
+          "ServiceName": "ec2",
+          "Region": "ap-northeast-1"
+        }
+      ],
+      "role_inline_policies": {
+        "StackSetVendorMonitorExecutionRole": {},
+        "VendorAMonitoringReadOnly": {
+          "vendor-agent-metrics-publish": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "cloudwatch:PutMetricData"
+                ],
+                "Resource": "*",
+                "Condition": {
+                  "StringEquals": {
+                    "cloudwatch:namespace": "VendorA/agent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "ex-ec2-role": {
+          "ex-ec2-app-bucket-access": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "s3:GetObject",
+                  "s3:PutObject",
+                  "s3:ListBucket"
+                ],
+                "Resource": [
+                  "arn:aws:s3:::chatdata-production",
+                  "arn:aws:s3:::chatdata-production/*"
+                ]
+              }
+            ]
+          }
+        },
+        "DLTStepFunctionRole": {
+          "dlt-invoke-lambda": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "lambda:InvokeFunction"
+                ],
+                "Resource": "arn:aws:lambda:ap-northeast-1:210987654321:function:ex-dlt-*"
+              }
+            ]
+          }
+        }
+      },
+      "role_attached_policy_documents": {}
+    },
+    "organizations": {
+      "Organization": {
+        "Id": "o-dn1234abcd",
+        "Arn": "arn:aws:organizations::123456789012:organization/o-dn1234abcd",
+        "FeatureSet": "ALL",
+        "MasterAccountId": "123456789012",
+        "MasterAccountArn": "arn:aws:organizations::123456789012:account/o-dn1234abcd/123456789012"
+      },
+      "Parents": [
+        {
+          "Id": "ou-dn12-legacyapps",
+          "Type": "ORGANIZATIONAL_UNIT"
+        }
+      ],
+      "ServiceControlPolicies": [
+        {
+          "Id": "p-FullAWSAccess",
+          "Name": "FullAWSAccess",
+          "AwsManaged": true,
+          "Type": "SERVICE_CONTROL_POLICY",
+          "Description": "Allows access to every operation"
+        }
+      ]
+    },
+    "identity_center": {
+      "Instances": []
+    },
+    "cloudformation_stacks": [
+      {
+        "StackName": "StackSetVendorMonitorStackSet-ex-1a2b3c",
+        "StackId": "arn:aws:cloudformation:stack/1",
+        "StackStatus": "CREATE_COMPLETE",
+        "CreationTime": "2022-02-01T00:10:00+00:00",
+        "Parameters": {
+          "_keys": [
+            "VendorMonitorEndpoint"
+          ]
+        },
+        "Outputs": {
+          "_keys": []
+        },
+        "Tags": []
+      },
+      {
+        "StackName": "ex-load-test",
+        "StackId": "arn:aws:cloudformation:stack/2",
+        "StackStatus": "CREATE_COMPLETE",
+        "CreationTime": "2022-08-18T05:00:00+00:00",
+        "Parameters": {
+          "_keys": [
+            "AdminEmail"
+          ]
+        },
+        "Outputs": {
+          "_keys": [
+            "ConsoleURL"
+          ]
+        },
+        "Tags": []
+      }
+    ],
+    "cloudformation_stack_sets": [
+      {
+        "StackSetName": "StackSetVendorMonitorStackSet",
+        "StackSetId": "StackSetVendorMonitorStackSet:9f2a",
+        "Status": "ACTIVE",
+        "Description": "ベンダー監視連携用リソース一式",
+        "PermissionModel": "SELF_MANAGED",
+        "AdministrationRoleARN": "arn:aws:iam::999888777666:role/VendorMonitorStackSetAdministrationRole",
+        "ExecutionRoleName": "StackSetVendorMonitorExecutionRole",
+        "Capabilities": [
+          "CAPABILITY_NAMED_IAM"
+        ],
+        "Parameters": {
+          "_keys": [
+            "VendorMonitorEndpoint"
+          ]
+        },
+        "_TemplateBodyLength": 18422
+      }
+    ],
+    "stack_instances": [
+      {
+        "StackSetName": "StackSetVendorMonitorStackSet",
+        "Account": "210987654321",
+        "Region": "ap-northeast-1",
+        "Status": "CURRENT",
+        "StackId": "arn:aws:cloudformation:stack/vendormonitor-1"
+      }
+    ],
+    "account_public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": false,
+      "RestrictPublicBuckets": false
+    },
+    "organizations_policies": [
+      {
+        "Id": "p-FullAWSAccess",
+        "Name": "FullAWSAccess",
+        "Type": "SERVICE_CONTROL_POLICY",
+        "AwsManaged": true,
+        "Description": "Allows access to every operation",
+        "Content": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Action\": \"*\", \"Resource\": \"*\"}]}",
+        "AttachedTo": [
+          {
+            "TargetId": "210987654321",
+            "TargetType": "ACCOUNT"
+          },
+          {
+            "TargetId": "ou-dn12-legacyapps",
+            "TargetType": "ORGANIZATIONAL_UNIT"
+          }
+        ]
+      }
+    ],
+    "securityhub_standards_controls": [
+      {
+        "StandardsSubscriptionArn": "arn:sub",
+        "StandardsArn": "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0",
+        "StandardsStatus": "READY",
+        "Controls": [
+          {
+            "StandardsControlArn": "arn:aws:securityhub:ap-northeast-1:210987654321:control/cis-aws-foundations-benchmark/v/1.2.0/1.1",
+            "ControlId": "CIS.1.1",
+            "ControlStatus": "ENABLED",
+            "SeverityRating": "CRITICAL",
+            "Title": "Avoid the use of the root account",
+            "ControlStatusUpdatedAt": "2022-03-01T00:10:00.000Z"
+          },
+          {
+            "StandardsControlArn": "arn:aws:securityhub:ap-northeast-1:210987654321:control/cis-aws-foundations-benchmark/v/1.2.0/1.13",
+            "ControlId": "CIS.1.13",
+            "ControlStatus": "ENABLED",
+            "SeverityRating": "CRITICAL",
+            "Title": "Ensure MFA is enabled for the root account",
+            "ControlStatusUpdatedAt": "2022-03-01T00:10:00.000Z"
+          },
+          {
+            "StandardsControlArn": "arn:aws:securityhub:ap-northeast-1:210987654321:control/cis-aws-foundations-benchmark/v/1.2.0/2.9",
+            "ControlId": "CIS.2.9",
+            "ControlStatus": "DISABLED",
+            "SeverityRating": "MEDIUM",
+            "Title": "Ensure VPC flow logging is enabled in all VPCs",
+            "ControlStatusUpdatedAt": "2023-06-14T05:20:00.000Z",
+            "DisabledReason": "コスト削減のため無効化（2023-06 運用判断）"
+          },
+          {
+            "StandardsControlArn": "arn:aws:securityhub:ap-northeast-1:210987654321:control/cis-aws-foundations-benchmark/v/1.2.0/4.1",
+            "ControlId": "CIS.4.1",
+            "ControlStatus": "DISABLED",
+            "SeverityRating": "HIGH",
+            "Title": "Ensure no security groups allow ingress from 0.0.0.0/0 to port 22",
+            "ControlStatusUpdatedAt": "2023-06-14T05:22:00.000Z",
+            "DisabledReason": "保守用踏み台の運用上やむを得ないため（再確認未実施）"
+          }
+        ]
+      }
+    ],
+    "kms_keys": [
+      {
+        "KeyId": "1f0c9a44-7b2e-4e51-9d3a-6c5b8e2f1a70",
+        "Arn": "arn:aws:kms:ap-northeast-1:210987654321:key/1f0c9a44-7b2e-4e51-9d3a-6c5b8e2f1a70",
+        "Description": "RDS production 用（作成時に自動生成）",
+        "KeyManager": "CUSTOMER",
+        "KeyState": "Enabled",
+        "KeyUsage": "ENCRYPT_DECRYPT",
+        "KeySpec": "SYMMETRIC_DEFAULT",
+        "CreationDate": "2021-09-30T05:00:00+00:00",
+        "MultiRegion": false,
+        "RotationEnabled": false,
+        "RotationPeriodInDays": null
+      },
+      {
+        "KeyId": "8d31b70e-2c96-44a7-b8f5-0e7a3d9c4b12",
+        "Arn": "arn:aws:kms:ap-northeast-1:210987654321:key/8d31b70e-2c96-44a7-b8f5-0e7a3d9c4b12",
+        "Description": "chatdata バケット暗号化用",
+        "KeyManager": "CUSTOMER",
+        "KeyState": "Enabled",
+        "KeyUsage": "ENCRYPT_DECRYPT",
+        "KeySpec": "SYMMETRIC_DEFAULT",
+        "CreationDate": "2023-04-12T02:30:00+00:00",
+        "MultiRegion": false,
+        "RotationEnabled": true,
+        "RotationPeriodInDays": 365
+      }
+    ],
+    "secrets": [
+      {
+        "Name": "example/prod/rds-master",
+        "ARN": "arn:aws:secretsmanager:ap-northeast-1:210987654321:secret:example/prod/rds-master-Ab3Kd9",
+        "Description": "production RDS のマスターパスワード",
+        "RotationEnabled": false,
+        "RotationRules": {},
+        "RotationLambdaARN": null,
+        "LastRotatedDate": null,
+        "LastChangedDate": "2021-09-30T05:10:00+00:00",
+        "KmsKeyId": null,
+        "CreatedDate": "2021-09-30T05:10:00+00:00"
+      },
+      {
+        "Name": "example/prod/ses-smtp",
+        "ARN": "arn:aws:secretsmanager:ap-northeast-1:210987654321:secret:example/prod/ses-smtp-Qp1Zx4",
+        "Description": "SES SMTP 認証情報",
+        "RotationEnabled": true,
+        "RotationRules": {
+          "AutomaticallyAfterDays": 90
+        },
+        "RotationLambdaARN": "arn:aws:lambda:ap-northeast-1:210987654321:function:SecretsManagerSESRotation",
+        "LastRotatedDate": "2026-08-20T03:00:00+00:00",
+        "LastChangedDate": "2026-08-20T03:00:00+00:00",
+        "KmsKeyId": null,
+        "CreatedDate": "2023-04-12T02:40:00+00:00"
+      }
+    ],
+    "ssm_parameters_meta": [
+      {
+        "Name": "/example/prod/db_password",
+        "Type": "String",
+        "KeyId": null,
+        "LastModifiedDate": "2021-10-02T07:15:00+00:00",
+        "Tier": "Standard",
+        "DataType": "text",
+        "Version": 3
+      },
+      {
+        "Name": "/example/prod/api_token",
+        "Type": "SecureString",
+        "KeyId": "alias/aws/ssm",
+        "LastModifiedDate": "2024-02-19T11:40:00+00:00",
+        "Tier": "Standard",
+        "DataType": "text",
+        "Version": 2
+      },
+      {
+        "Name": "/example/prod/app_endpoint",
+        "Type": "String",
+        "KeyId": null,
+        "LastModifiedDate": "2024-02-19T11:41:00+00:00",
+        "Tier": "Standard",
+        "DataType": "text",
+        "Version": 1
+      },
+      {
+        "Name": "/example/stg/db_password",
+        "Type": "SecureString",
+        "KeyId": "alias/aws/ssm",
+        "LastModifiedDate": "2024-02-19T11:42:00+00:00",
+        "Tier": "Standard",
+        "DataType": "text",
+        "Version": 1
+      }
+    ]
+  }
+}
